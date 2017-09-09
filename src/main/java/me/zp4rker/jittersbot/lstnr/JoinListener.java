@@ -11,7 +11,8 @@ public class JoinListener {
     @SubscribeEvent
     public void onMemberJoin(GuildMemberJoinEvent event) {
         event.getGuild().getPublicChannel()
-                .sendMessage("Welcome to Jitters, " + event.getUser().getAsMention() + "!").complete();
+                .sendMessage("Welcome to Jitters, " + event.getUser().getAsMention() + "!" +
+                        " Head on over to <#312817696578469888> and send `!sassign` to start adding your roles.").complete();
     }
 
 }
