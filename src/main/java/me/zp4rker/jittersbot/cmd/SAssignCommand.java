@@ -48,7 +48,7 @@ public class SAssignCommand implements ICommand {
             if (role == null) sendError(message);
             else if (message.getMember().getRoles().contains(guild.getRoleById(role))) sendWarning(message);
             else {
-                guild.getController().addSingleRoleToMember(message.getMember(), guild.getRoleById(role)).complete();
+                guild.getController().addRolesToMember(message.getMember(), guild.getRoleById(role)).complete();
                 sendConfirmation(message, guild.getRoleById(role));
             }
         }
