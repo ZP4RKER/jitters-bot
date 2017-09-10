@@ -3,6 +3,7 @@ package me.zp4rker.jittersbot.cmd;
 import me.zp4rker.core.command.ICommand;
 import me.zp4rker.core.command.RegisterCommand;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 
 import java.time.Instant;
@@ -54,8 +55,13 @@ public class MuteCommand implements ICommand {
 
             if (role == null) return false;
 
-            if (role.getPermissionsRaw() != 0) {
-                role.getManager().setPermissions(0).complete();
+            for (TextChannel c : member.getGuild().getTextChannels()) {
+                for (PermissionOverride perm : c.getRolePermissionOverrides()) {
+                    if (!role.getName().equalsIgnoreCase("muted")) continue;
+                    if (perm.getDenied().stream().anyMatch(p -> p.getName().equalsIgnoreCase("message_write") ||
+                            p.getName().equalsIgnoreCase("message_attach_files"))) continue;
+                    perm.getManager().deny(Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES).complete();
+                }
             }
 
             member.getGuild().getController().addSingleRoleToMember(member, role).complete();
