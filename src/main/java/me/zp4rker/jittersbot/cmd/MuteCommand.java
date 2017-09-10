@@ -54,8 +54,8 @@ public class MuteCommand implements ICommand {
 
             if (role == null) return false;
 
-            if (role.getPermissionsRaw() != 3201088) {
-                role.getManager().setPermissions(3201088).complete();
+            if (role.getPermissionsRaw() != 0) {
+                role.getManager().setPermissions(0).complete();
             }
 
             member.getGuild().getController().addSingleRoleToMember(member, role).complete();
