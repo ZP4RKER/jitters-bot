@@ -101,7 +101,9 @@ public class MuteCommand implements ICommand {
         if (muted) embedBuilder.setTitle("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been muted!");
         else embedBuilder.setTitle("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been unmuted!");
 
-        channel.sendMessage(embedBuilder.build()).complete();
+        MessageEmbed embed = embedBuilder.build();
+        channel.sendMessage(embed).complete();
+        message.getChannel().sendMessage(embed).complete();
     }
 
 }
