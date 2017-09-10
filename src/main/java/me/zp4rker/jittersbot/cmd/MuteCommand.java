@@ -56,12 +56,9 @@ public class MuteCommand implements ICommand {
             if (role == null) return false;
 
             for (TextChannel c : member.getGuild().getTextChannels()) {
-                for (PermissionOverride perm : c.getRolePermissionOverrides()) {
-                    if (!role.getName().equalsIgnoreCase("muted")) continue;
-                    if (perm.getDenied().stream().anyMatch(p -> p.getName().equalsIgnoreCase("message_write") ||
-                            p.getName().equalsIgnoreCase("message_attach_files"))) continue;
-                    perm.getManager().deny(Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES).complete();
-                }
+                c.createPermissionOverride(role).complete();
+                c.getPermissionOverride(role).getManager()
+                        .deny(Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES).complete();
             }
 
             member.getGuild().getController().addSingleRoleToMember(member, role).complete();
