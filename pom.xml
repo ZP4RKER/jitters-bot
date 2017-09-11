@@ -6,8 +6,8 @@
 
     <name>jitters-bot</name>
 
-    <groupId>me.zp4rker</groupId>
-    <artifactId>jittersbot</artifactId>
+    <groupId>me.zp4rker.discord</groupId>
+    <artifactId>jitters</artifactId>
     <version>1.0</version>
 
     <repositories>
@@ -73,7 +73,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>me.zp4rker.jittersbot.Jitters</mainClass>
+                            <mainClass>me.zp4rker.discord.jitters.Jitters</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

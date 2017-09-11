@@ -1,7 +1,7 @@
-package me.zp4rker.jittersbot.lstnr;
+package me.zp4rker.discord.jitters.lstnr;
 
-import me.zp4rker.core.logger.ZLogger;
-import me.zp4rker.jittersbot.Jitters;
+import me.zp4rker.discord.core.logger.ZLogger;
+import me.zp4rker.discord.jitters.Jitters;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;

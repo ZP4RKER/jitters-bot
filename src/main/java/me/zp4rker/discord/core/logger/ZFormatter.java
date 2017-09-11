@@ -1,4 +1,4 @@
-package me.zp4rker.core.logger;
+package me.zp4rker.discord.core.logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package me.zp4rker.core.command;
+package me.zp4rker.discord.core.command;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

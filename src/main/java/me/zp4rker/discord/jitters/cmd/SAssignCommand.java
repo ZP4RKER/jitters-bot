@@ -1,7 +1,7 @@
-package me.zp4rker.jittersbot.cmd;
+package me.zp4rker.discord.jitters.cmd;
 
-import me.zp4rker.core.command.ICommand;
-import me.zp4rker.core.command.RegisterCommand;
+import me.zp4rker.discord.core.command.ICommand;
+import me.zp4rker.discord.core.command.RegisterCommand;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;

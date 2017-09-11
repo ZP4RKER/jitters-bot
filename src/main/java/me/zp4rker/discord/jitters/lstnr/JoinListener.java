@@ -1,4 +1,4 @@
-package me.zp4rker.jittersbot.lstnr;
+package me.zp4rker.discord.jitters.lstnr;
 
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;

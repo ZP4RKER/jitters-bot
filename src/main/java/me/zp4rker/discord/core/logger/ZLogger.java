@@ -1,7 +1,7 @@
-package me.zp4rker.core.logger;
+package me.zp4rker.discord.core.logger;
 
 
-import me.zp4rker.jittersbot.Jitters;
+import me.zp4rker.discord.jitters.Jitters;
 
 import java.io.File;
 import java.util.logging.ConsoleHandler;

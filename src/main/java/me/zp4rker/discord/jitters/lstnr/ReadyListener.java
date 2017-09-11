@@ -1,9 +1,9 @@
-package me.zp4rker.jittersbot.lstnr;
+package me.zp4rker.discord.jitters.lstnr;
 
-import me.zp4rker.jittersbot.Jitters;
-import me.zp4rker.jittersbot.cmd.InfoCommand;
-import me.zp4rker.jittersbot.cmd.MuteCommand;
-import me.zp4rker.jittersbot.cmd.SAssignCommand;
+import me.zp4rker.discord.jitters.Jitters;
+import me.zp4rker.discord.jitters.cmd.InfoCommand;
+import me.zp4rker.discord.jitters.cmd.MuteCommand;
+import me.zp4rker.discord.jitters.cmd.SAssignCommand;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
 

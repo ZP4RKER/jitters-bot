@@ -1,10 +1,10 @@
-package me.zp4rker.jittersbot;
+package me.zp4rker.discord.jitters;
 
-import me.zp4rker.core.command.handler.CommandHandler;
-import me.zp4rker.core.logger.ZLogger;
-import me.zp4rker.jittersbot.lstnr.JoinListener;
-import me.zp4rker.jittersbot.lstnr.LeaveListener;
-import me.zp4rker.jittersbot.lstnr.ReadyListener;
+import me.zp4rker.discord.core.command.handler.CommandHandler;
+import me.zp4rker.discord.core.logger.ZLogger;
+import me.zp4rker.discord.jitters.lstnr.JoinListener;
+import me.zp4rker.discord.jitters.lstnr.LeaveListener;
+import me.zp4rker.discord.jitters.lstnr.ReadyListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
