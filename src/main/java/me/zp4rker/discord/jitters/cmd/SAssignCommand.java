@@ -17,7 +17,7 @@ import java.util.TimerTask;
  */
 public class SAssignCommand implements ICommand {
 
-    @RegisterCommand(aliases = "sassign",
+    @RegisterCommand(aliases = {"sassign", "assign"},
                     description = "Assigns a role to the user.",
                     usage = "{prefix}sassign role")
     public void onCommand(Message message, String[] args) {
@@ -60,34 +60,34 @@ public class SAssignCommand implements ICommand {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription("**Roles:**\n- The Flash\n- Arrow\n- Legends of Tomorrow\n- Supergirl\n\n" +
                         "**Usage:**\n`!sassign <role>`")
-                .setColor(Color.decode("#34c6f2")).build()).complete());
+                .setColor(Color.decode("#34c6f2")).build()).complete(), 15000);
     }
 
     private void sendConfirmation(Message message, Role role) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":white_check_mark: You have assigned the `" + role.getName() + "` role to yourself!")
-                .setColor(role.getColor()).build()).complete());
+                .setColor(role.getColor()).build()).complete(), 7000);
     }
 
     private void sendError(Message message) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":x: That role doesn't exist!")
-                .setColor(Color.RED).build()).complete());
+                .setColor(Color.RED).build()).complete(), 6000);
     }
 
     private void sendWarning(Message message) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":warning: You already have that role!")
-                .setColor(Color.YELLOW).build()).complete());
+                .setColor(Color.YELLOW).build()).complete(), 6000);
     }
 
-    private void selfDestruct(Message message) {
+    private void selfDestruct(Message message, long delay) {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 message.delete().complete();
             }
-        }, 5000);
+        }, delay);
     }
 
     private void delete(Message message) {
