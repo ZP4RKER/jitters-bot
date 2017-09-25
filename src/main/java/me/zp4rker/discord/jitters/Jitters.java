@@ -5,6 +5,7 @@ import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.lstnr.JoinListener;
 import me.zp4rker.discord.jitters.lstnr.LeaveListener;
 import me.zp4rker.discord.jitters.lstnr.ReadyListener;
+import me.zp4rker.discord.jitters.lstnr.SpamListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -36,6 +37,7 @@ public class Jitters {
                 .addEventListener(new ReadyListener())
                 .addEventListener(new JoinListener())
                 .addEventListener(new LeaveListener())
+                .addEventListener(new SpamListener())
                 .buildAsync();
     }
 
