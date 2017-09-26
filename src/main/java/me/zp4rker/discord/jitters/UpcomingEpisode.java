@@ -106,6 +106,7 @@ class UpcomingEpisode {
             return new JSONObject(jsonText);
         } catch (Exception e) {
             ZLogger.warn("Could not get JSON from URL!");
+            e.printStackTrace();
             return null;
         } finally {
             closeInputstream(is);
