@@ -105,7 +105,8 @@ class UpcomingEpisode {
             is = new URL(url).openStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
-            return new JSONArray(jsonText).getJSONObject(0);
+            if (jsonText.startsWith("[")) return new JSONArray(jsonText).getJSONObject(0);
+            else return new JSONObject(jsonText);
         } catch (Exception e) {
             ZLogger.warn("Could not get JSON from URL!");
             e.printStackTrace();
