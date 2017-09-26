@@ -36,7 +36,7 @@ class UpcomingEpisode {
     }
 
     private void updateTopics() {
-        ZLogger.debug((getTopic("the-flash") == null) + "");
+        ZLogger.debug((flash == null) + "");
         flash.getManager().setTopic(getTopic("the-flash")).queue();
         arrow.getManager().setTopic(getTopic("arrow")).queue();
         supergirl.getManager().setTopic(getTopic("supergirl")).queue();
