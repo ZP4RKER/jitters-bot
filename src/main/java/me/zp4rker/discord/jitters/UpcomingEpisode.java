@@ -2,6 +2,7 @@ package me.zp4rker.discord.jitters;
 
 import me.zp4rker.discord.core.logger.ZLogger;
 import net.dv8tion.jda.core.entities.TextChannel;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -103,7 +104,7 @@ class UpcomingEpisode {
             is = new URL(url).openStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
-            return new JSONObject(jsonText);
+            return new JSONArray(jsonText).getJSONObject(0);
         } catch (Exception e) {
             ZLogger.warn("Could not get JSON from URL!");
             e.printStackTrace();
