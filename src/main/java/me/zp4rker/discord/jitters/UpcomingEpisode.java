@@ -43,23 +43,20 @@ class UpcomingEpisode {
 
     private String getTopic(String show) {
         JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
+        ZLogger.debug((showData == null) + "");
         if (showData == null) return null;
 
         String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
         JSONObject episodeData = readJsonFromUrl(episodeUrl);
+        ZLogger.debug((episodeData == null) + "");
         if (episodeData == null) return null;
 
         String title = episodeData.getString("name");
-        ZLogger.debug(title);
         String season = episodeData.getString("season");
-        ZLogger.debug(season);
         String episode = episodeData.getString("episode");
-        ZLogger.debug(episode);
 
         String[] date = episodeData.getString("airdate").split("-");
-        ZLogger.debug(String.join("/", date));
         String[] time = episodeData.getString("airtime").split(":");
-        ZLogger.debug(String.join(":", time));
 
         Instant instant;
         try {
@@ -70,9 +67,7 @@ class UpcomingEpisode {
         }
 
         String timeLeft = timeRemaining(instant);
-        ZLogger.debug(timeLeft);
         String episodeString = "S" + season + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
-        ZLogger.debug(episodeString);
 
         return "Next episode: In " + timeLeft + "(" + episodeString + ")";
     }
