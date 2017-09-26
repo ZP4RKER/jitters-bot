@@ -35,6 +35,7 @@ class UpcomingEpisode {
     }
 
     private void updateTopics() {
+        ZLogger.debug((getTopic("the-flash") == null) + "");
         flash.getManager().setTopic(getTopic("the-flash")).queue();
         arrow.getManager().setTopic(getTopic("arrow")).queue();
         supergirl.getManager().setTopic(getTopic("supergirl")).queue();
@@ -43,12 +44,10 @@ class UpcomingEpisode {
 
     private String getTopic(String show) {
         JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
-        ZLogger.debug((showData == null) + "");
         if (showData == null) return null;
 
         String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
         JSONObject episodeData = readJsonFromUrl(episodeUrl);
-        ZLogger.debug((episodeData == null) + "");
         if (episodeData == null) return null;
 
         String title = episodeData.getString("name");
