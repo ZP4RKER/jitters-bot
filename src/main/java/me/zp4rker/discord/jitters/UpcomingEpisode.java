@@ -43,7 +43,6 @@ public class UpcomingEpisode {
     }
 
     private void updateTopics() {
-        ZLogger.debug((flash == null) + "");
         flash.getManager().setTopic(getTopic("the-flash")).queue();
         arrow.getManager().setTopic(getTopic("arrow")).queue();
         supergirl.getManager().setTopic(getTopic("supergirl")).queue();
@@ -75,9 +74,9 @@ public class UpcomingEpisode {
         }
 
         String timeLeft = timeRemaining(instant);
-        String episodeString = "S" + season + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
+        String episodeString = "S" + season + "E" + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
 
-        return "Next episode: In " + timeLeft + "(" + episodeString + ")";
+        return "Next episode: In " + timeLeft + " (" + episodeString + ")";
     }
 
     private Instant toInstant(String[] date, String[] time) throws Exception {
@@ -93,7 +92,7 @@ public class UpcomingEpisode {
 
     private String timeRemaining(Instant instant) {
         Instant now = Instant.now();
-        long remaining = now.getEpochSecond() - instant.getEpochSecond();
+        long remaining = instant.getEpochSecond() - now.getEpochSecond();
 
         long days = TimeUnit.SECONDS.toDays(remaining);
         remaining -= TimeUnit.DAYS.toSeconds(days);
