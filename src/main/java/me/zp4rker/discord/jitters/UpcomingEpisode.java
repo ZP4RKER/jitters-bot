@@ -46,6 +46,7 @@ class UpcomingEpisode {
     private String getTopic(String show) {
         JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
         if (showData == null) return null;
+        showData = showData.getJSONObject("show");
 
         String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
         JSONObject episodeData = readJsonFromUrl(episodeUrl);
