@@ -24,7 +24,7 @@ public class LeaveListener {
             if (!message.getAuthor().getId().equals(member.getJDA().getSelfUser().getId())) return;
             ZLogger.debug("Found message!");
 
-            message.delete().complete();
+            message.delete().queue();
         });
     }
 

@@ -71,7 +71,7 @@ public class SAssignCommand implements ICommand {
 
     private void sendError(Message message) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
-                .setDescription(":x: That role doesn't exist!")
+                .setDescription(":x: That role doesn't exist or can't be self-assigned!")
                 .setColor(Color.RED).build()).complete(), 6000);
     }
 
@@ -92,7 +92,7 @@ public class SAssignCommand implements ICommand {
 
     private void delete(Message message) {
         Message msg = message.getChannel().sendMessage("`").complete();
-        message.getTextChannel().deleteMessages(Arrays.asList(message, msg)).complete();
+        message.getTextChannel().deleteMessages(Arrays.asList(message, msg)).queue();
     }
 
 }

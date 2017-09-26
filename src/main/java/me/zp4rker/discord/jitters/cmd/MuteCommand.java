@@ -17,7 +17,7 @@ public class MuteCommand implements ICommand {
     @RegisterCommand(aliases = "mute", showInHelp = false)
     public void onMuteCommand(Message message, String[] args) {
         message.getTextChannel()
-                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
+                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).queue();
         if (!isStaff(message.getMember())) return;
         if (message.getMentionedUsers().size() != 1) return;
         if (args.length < 1) return;
@@ -31,7 +31,7 @@ public class MuteCommand implements ICommand {
     @RegisterCommand(aliases = "unmute", showInHelp = false)
     public void onUnmuteCommand(Message message, String[] args) {
         message.getTextChannel()
-                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
+                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).queue();
         if (!isStaff(message.getMember())) return;
         if (message.getMentionedUsers().size() != 1) return;
         if (args.length < 1) return;
@@ -58,10 +58,10 @@ public class MuteCommand implements ICommand {
             for (TextChannel c : member.getGuild().getTextChannels()) {
                 c.createPermissionOverride(role).complete();
                 c.getPermissionOverride(role).getManager()
-                        .deny(Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES).complete();
+                        .deny(Permission.MESSAGE_WRITE, Permission.MESSAGE_ATTACH_FILES).queue();
             }
 
-            member.getGuild().getController().addSingleRoleToMember(member, role).complete();
+            member.getGuild().getController().addSingleRoleToMember(member, role).queue();
 
             return true;
         } catch (Exception e) {
@@ -74,7 +74,7 @@ public class MuteCommand implements ICommand {
         if (!alreadyMuted(member)) return false;
         try {
             member.getGuild().getController().removeSingleRoleFromMember(member,
-                    member.getGuild().getRolesByName("Muted", false).get(0)).complete();
+                    member.getGuild().getRolesByName("Muted", false).get(0)).queue();
             return true;
         } catch (Exception e) {
             return false;
@@ -102,8 +102,8 @@ public class MuteCommand implements ICommand {
         else embedBuilder.setTitle("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been unmuted!");
 
         MessageEmbed embed = embedBuilder.build();
-        channel.sendMessage(embed).complete();
-        message.getChannel().sendMessage(embed).complete();
+        channel.sendMessage(embed).queue();
+        message.getChannel().sendMessage(embed).queue();
     }
 
 }

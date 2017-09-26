@@ -13,9 +13,9 @@ public class JoinListener {
     public void onMemberJoin(GuildMemberJoinEvent event) {
         event.getGuild().getTextChannelById(312571375598698507L)
                 .sendMessage("Welcome to Jitters, " + event.getUser().getAsMention() + "!" +
-                        " Head on over to <#312817696578469888> and run the command `!sassign` to start adding your roles.").complete();
+                        " Head on over to <#312817696578469888> and run the command `!sassign` to start adding your roles.").queue();
         Role role = event.getGuild().getRolesByName("Member", false).get(0);
-        event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).complete();
+        event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).queue();
     }
 
 }

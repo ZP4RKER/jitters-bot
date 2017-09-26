@@ -37,7 +37,7 @@ public class SpamListener {
                 .setColor(Color.RED)
                 .setTimestamp(Instant.now()).build();
 
-        logs.sendMessage(embed).complete();
+        logs.sendMessage(embed).queue();
     }
 
 }

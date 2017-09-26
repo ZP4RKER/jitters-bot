@@ -19,7 +19,7 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new MuteCommand());
 
         Jitters.jda.getTextChannelById("314654582183821312")
-                .sendMessage("Jitters " + Jitters.VERSION + " started successfully!").complete();
+                .sendMessage("Jitters " + Jitters.VERSION + " started successfully!").queue();
     }
 
 }

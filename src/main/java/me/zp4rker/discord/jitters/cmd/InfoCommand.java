@@ -17,7 +17,7 @@ public class InfoCommand implements ICommand {
                     description = "Displays info about the bot.",
                     usage = "{prefix}info")
     public void onCommand(Message message) {
-        message.getChannel().sendMessage(compileEmbed(message.getJDA())).complete();
+        message.getChannel().sendMessage(compileEmbed(message.getJDA())).queue();
     }
 
     private MessageEmbed compileEmbed(JDA jda) {
