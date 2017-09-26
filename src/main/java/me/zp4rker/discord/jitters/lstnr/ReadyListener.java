@@ -1,5 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
+import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.cmd.InfoCommand;
 import me.zp4rker.discord.jitters.cmd.MuteCommand;
@@ -18,8 +19,7 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new SAssignCommand());
         Jitters.handler.registerCommand(new MuteCommand());
 
-        Jitters.jda.getTextChannelById("314654582183821312")
-                .sendMessage("Jitters " + Jitters.VERSION + " started successfully!").queue();
+        ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
 }

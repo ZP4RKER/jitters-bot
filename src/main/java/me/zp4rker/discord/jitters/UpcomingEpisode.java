@@ -54,7 +54,7 @@ class UpcomingEpisode {
 
         String title = episodeData.getString("name");
         String season = episodeData.getInt("season") + "";
-        String episode = episodeData.getInt("episode") + "";
+        String episode = episodeData.getInt("number") + "";
 
         String[] date = episodeData.getString("airdate").split("-");
         String[] time = episodeData.getString("airtime").split(":");
