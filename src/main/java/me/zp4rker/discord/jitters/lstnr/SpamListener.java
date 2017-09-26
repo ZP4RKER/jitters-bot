@@ -16,8 +16,6 @@ import java.time.Instant;
  */
 public class SpamListener {
 
-    private final TextChannel logs = Jitters.jda.getTextChannelById(314654582183821312L);
-
     @SubscribeEvent
     public void onMessage(GuildMessageReceivedEvent event) {
         String content = event.getMessage().getRawContent();
@@ -28,6 +26,8 @@ public class SpamListener {
     }
 
     private void remove(Message message) {
+        TextChannel logs = Jitters.jda.getTextChannelById(314654582183821312L);
+        
         message.delete().complete();
         String username = message.getAuthor().getName() + "#" + message.getAuthor().getDiscriminator();
 
