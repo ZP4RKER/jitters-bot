@@ -19,21 +19,21 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author ZP4RKER
  */
-class UpcomingEpisode {
+public class UpcomingEpisode {
 
     private TextChannel flash;
     private TextChannel arrow;
     private TextChannel supergirl;
     private TextChannel legends;
 
-    UpcomingEpisode() {
+    public UpcomingEpisode() {
         flash = Jitters.jda.getTextChannelById(312574911199576064L);
         arrow = Jitters.jda.getTextChannelById(312574944137707530L);
         supergirl = Jitters.jda.getTextChannelById(312575189877653504L);
         legends = Jitters.jda.getTextChannelById(312574974005346304L);
     }
 
-    void start() {
+    public void start() {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

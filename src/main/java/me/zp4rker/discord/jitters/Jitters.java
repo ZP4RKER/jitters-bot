@@ -39,8 +39,6 @@ public class Jitters {
                 .addEventListener(new LeaveListener())
                 .addEventListener(new SpamListener())
                 .buildAsync();
-
-        new UpcomingEpisode().start();
     }
 
     public static File getDirectory() throws Exception {

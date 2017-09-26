@@ -2,6 +2,7 @@ package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
+import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.InfoCommand;
 import me.zp4rker.discord.jitters.cmd.MuteCommand;
 import me.zp4rker.discord.jitters.cmd.SAssignCommand;
@@ -18,6 +19,8 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new InfoCommand());
         Jitters.handler.registerCommand(new SAssignCommand());
         Jitters.handler.registerCommand(new MuteCommand());
+
+        new UpcomingEpisode().start();
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
