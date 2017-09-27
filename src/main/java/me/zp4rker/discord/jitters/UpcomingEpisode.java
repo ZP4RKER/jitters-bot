@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class UpcomingEpisode {
 
-    private JSONObject flashData, arrowData, supergirlData, legendsData;
-
     private TextChannel flash;
     private TextChannel arrow;
     private TextChannel supergirl;
@@ -45,126 +43,10 @@ public class UpcomingEpisode {
     }
 
     private void updateTopics() {
-        updateFlash();
-        updateArrow();
-        updateSupergirl();
-        updateLegends();
-    }
-
-    private void updateFlash() {
-        String topic;
-        if (flashData != null) {
-            String title = flashData.getString("name");
-            String season = flashData.getInt("season") + "";
-            String episode = flashData.getInt("number") + "";
-
-            String[] date = flashData.getString("airdate").split("-");
-            String[] time = flashData.getString("airtime").split(":");
-
-            Instant instant;
-            try {
-                instant = toInstant(date, time);
-            } catch (Exception e) {
-                ZLogger.warn("Could not get episode airdate/time!");
-                return;
-            }
-
-            String timeLeft = timeRemaining(instant);
-            String episodeString = "S" + season + "E" + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
-
-            topic = "Next episode: In " + timeLeft + " (" + episodeString + ")";
-        } else {
-            topic = getTopic("the-flash");
-        }
-
-        flash.getManager().setTopic(topic).queue();
-    }
-
-    private void updateArrow() {
-        String topic;
-        if (arrowData != null) {
-            String title = arrowData.getString("name");
-            String season = arrowData.getInt("season") + "";
-            String episode = arrowData.getInt("number") + "";
-
-            String[] date = arrowData.getString("airdate").split("-");
-            String[] time = arrowData.getString("airtime").split(":");
-
-            Instant instant;
-            try {
-                instant = toInstant(date, time);
-            } catch (Exception e) {
-                ZLogger.warn("Could not get episode airdate/time!");
-                return;
-            }
-
-            String timeLeft = timeRemaining(instant);
-            String episodeString = "S" + season + "E" + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
-
-            topic = "Next episode: In " + timeLeft + " (" + episodeString + ")";
-        } else {
-            topic = getTopic("arrow");
-        }
-
-        arrow.getManager().setTopic(topic).queue();
-    }
-
-    private void updateSupergirl() {
-        String topic;
-        if (supergirlData != null) {
-            String title = supergirlData.getString("name");
-            String season = supergirlData.getInt("season") + "";
-            String episode = supergirlData.getInt("number") + "";
-
-            String[] date = supergirlData.getString("airdate").split("-");
-            String[] time = supergirlData.getString("airtime").split(":");
-
-            Instant instant;
-            try {
-                instant = toInstant(date, time);
-            } catch (Exception e) {
-                ZLogger.warn("Could not get episode airdate/time!");
-                return;
-            }
-
-            String timeLeft = timeRemaining(instant);
-            String episodeString = "S" + season + "E" + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
-
-            topic = "Next episode: In " + timeLeft + " (" + episodeString + ")";
-        } else {
-            topic = getTopic("supergirl");
-        }
-
-        supergirl.getManager().setTopic(topic).queue();
-    }
-
-    private void updateLegends() {
-        String topic;
-        if (legendsData != null) {
-            String title = legendsData.getString("name");
-            String season = legendsData.getInt("season") + "";
-            String episode = legendsData.getInt("number") + "";
-
-            String[] date = legendsData.getString("airdate").split("-");
-            String[] time = legendsData.getString("airtime").split(":");
-
-            Instant instant;
-            try {
-                instant = toInstant(date, time);
-            } catch (Exception e) {
-                ZLogger.warn("Could not get episode airdate/time!");
-                return;
-            }
-
-            String timeLeft = timeRemaining(instant);
-            String episodeString = "S" + season + "E" + (episode.length() < 2 ? "0" : "") + episode + " - " + title;
-
-            topic = "Next episode: In " + timeLeft + " (" + episodeString + ")";
-        } else {
-            topic = getTopic("legends-of-tomorrow");
-        }
-
-        legends.getManager().setTopic(topic).queue();
+        flash.getManager().setTopic(getTopic("the-flash")).queue();
+        arrow.getManager().setTopic(getTopic("arrow")).queue();
+        supergirl.getManager().setTopic(getTopic("supergirl")).queue();
+        legends.getManager().setTopic(getTopic("legends-of-tomorrow")).queue();
     }
 
     private String getTopic(String show) {
@@ -175,7 +57,6 @@ public class UpcomingEpisode {
         String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
         JSONObject episodeData = readJsonFromUrl(episodeUrl);
         if (episodeData == null) return null;
-        save(episodeData);
 
         String title = episodeData.getString("name");
         String season = episodeData.getInt("season") + "";
@@ -222,14 +103,6 @@ public class UpcomingEpisode {
         long minutes = TimeUnit.SECONDS.toMinutes(remaining);
 
         return days + "d " + hours + "h " + minutes + "m";
-    }
-
-    private void save(JSONObject data) {
-        String url = data.getString("url");
-        if (url.contains("flash")) flashData = data;
-        else if (url.contains("arrow")) arrowData = data;
-        else if (url.contains("supergirl")) supergirlData = data;
-        else legendsData = data;
     }
 
     private JSONObject readJsonFromUrl(String url) {
