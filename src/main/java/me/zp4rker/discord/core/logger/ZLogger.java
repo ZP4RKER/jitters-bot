@@ -38,7 +38,7 @@ public class ZLogger {
     }
 
     public static void debug(String message) {
-        logger.log(Level.OFF, "[DEBUG] " + message + "\n\n");
+        logger.log(new CustomLevel("DEBUG"), message + "\n\n");
     }
 
     public static void blankLine() {

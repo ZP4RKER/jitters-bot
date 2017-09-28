@@ -22,6 +22,7 @@ public class ReadyListener {
 
         new UpcomingEpisode().start();
 
+        ZLogger.blankLine();
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
