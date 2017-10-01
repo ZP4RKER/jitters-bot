@@ -4,6 +4,7 @@ import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.InfoCommand;
+import me.zp4rker.discord.jitters.cmd.KickCommand;
 import me.zp4rker.discord.jitters.cmd.MuteCommand;
 import me.zp4rker.discord.jitters.cmd.SAssignCommand;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -16,14 +17,20 @@ public class ReadyListener {
 
     @SubscribeEvent
     public void onReady(ReadyEvent event) {
-        Jitters.handler.registerCommand(new InfoCommand());
-        Jitters.handler.registerCommand(new SAssignCommand());
-        Jitters.handler.registerCommand(new MuteCommand());
+        registerCommand();
 
         new UpcomingEpisode().start();
 
         ZLogger.blankLine();
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
+    }
+
+    private void registerCommand() {
+        Jitters.handler.registerCommand(new InfoCommand());
+        Jitters.handler.registerCommand(new SAssignCommand());
+
+        Jitters.handler.registerCommand(new MuteCommand());
+        Jitters.handler.registerCommand(new KickCommand());
     }
 
 }

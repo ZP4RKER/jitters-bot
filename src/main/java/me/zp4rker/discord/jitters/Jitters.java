@@ -9,6 +9,7 @@ import me.zp4rker.discord.jitters.lstnr.SpamListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
 import java.io.File;
@@ -19,6 +20,9 @@ import java.util.concurrent.Executors;
  * @author ZP4RKER
  */
 public class Jitters {
+
+    // TODO: Implement ban command
+    // TODO: Implement purge command
 
     public static ExecutorService async = Executors.newCachedThreadPool();
 
@@ -39,6 +43,10 @@ public class Jitters {
                 .addEventListener(new LeaveListener())
                 .addEventListener(new SpamListener())
                 .buildAsync();
+    }
+
+    public static Role getStaffRole() {
+        return jda.getRoleById(312571560407990272L);
     }
 
     public static File getDirectory() throws Exception {
