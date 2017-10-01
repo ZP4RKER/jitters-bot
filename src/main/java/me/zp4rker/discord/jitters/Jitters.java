@@ -22,7 +22,6 @@ import java.util.concurrent.Executors;
 public class Jitters {
 
     // TODO: Implement ban command
-    // TODO: Implement purge command
 
     public static ExecutorService async = Executors.newCachedThreadPool();
 

@@ -49,7 +49,7 @@ public class KickCommand implements ICommand {
         MessageEmbed embed = new EmbedBuilder()
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
-                .setDescription("Kicked by " + user.getAsMention() + "\n" +
+                .setDescription("Kicked by " + user.getAsMention() + ".\n" +
                         "**Reason:** " + reason)
                 .setColor(Color.RED)
                 .setTimestamp(Instant.now()).build();
