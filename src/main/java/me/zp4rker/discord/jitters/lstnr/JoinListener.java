@@ -21,16 +21,16 @@ public class JoinListener {
     public void onMemberJoin(GuildMemberJoinEvent event) {
         TextChannel channel = event.getGuild().getTextChannelById(312571375598698507L);
         String message = "Welcome to Jitters, " + event.getUser().getAsMention() + "!" + " Head on over to " +
-                "<#312817696578469888> and run the command `!sassign` to start adding your roles.";
+                "<#312817696578469888> and run the command `!assign` to start adding your roles.";
         channel.sendMessage(message).queue(m -> {
-            joinMessages.put(m.getAuthor().getId(), m);
+            joinMessages.put(event.getUser().getId(), m);
 
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    joinMessages.remove(m.getAuthor().getId());
+                    joinMessages.remove(event.getUser().getId());
                 }
-            }, 86400000L);
+            }, 172800000L);
         });
         Role role = event.getGuild().getRolesByName("Member", false).get(0);
         event.getGuild().getController().addSingleRoleToMember(event.getMember(), role).queue();

@@ -37,7 +37,7 @@ public class CommandHandler {
         if (!event.getMessage().getContent().startsWith(prefix)) return;
 
         String[] splitContent = event.getMessage().getRawContent().replace(prefix, "").split(" ");
-        if (!commands.containsKey(splitContent[0])) return;
+        if (!commands.containsKey(splitContent[0].toLowerCase())) return;
 
         Command command = commands.get(splitContent[0]);
         RegisterCommand annotation = command.getCommandAnnotation();

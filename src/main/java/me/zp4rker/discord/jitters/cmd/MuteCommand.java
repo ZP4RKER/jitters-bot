@@ -98,8 +98,8 @@ public class MuteCommand implements ICommand {
                 .setThumbnail(toMute.getEffectiveAvatarUrl())
                 .setFooter("Muted by " + author.getName() + "#" + author.getDiscriminator(), null)
                 .setTimestamp(Instant.now());
-        if (muted) embedBuilder.setTitle("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been muted!");
-        else embedBuilder.setTitle("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been unmuted!");
+        if (muted) embedBuilder.setDescription("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been muted!");
+        else embedBuilder.setDescription("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been unmuted!");
 
         MessageEmbed embed = embedBuilder.build();
         channel.sendMessage(embed).queue();

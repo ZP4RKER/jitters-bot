@@ -24,10 +24,11 @@ public class ReadyListener {
 
     private void registerCommand() {
         Jitters.handler.registerCommand(new InfoCommand());
-        Jitters.handler.registerCommand(new SAssignCommand());
+        Jitters.handler.registerCommand(new AssignCommand());
 
         Jitters.handler.registerCommand(new MuteCommand());
         Jitters.handler.registerCommand(new KickCommand());
+        Jitters.handler.registerCommand(new BanCommand());
         Jitters.handler.registerCommand(new PurgeCommand());
     }
 

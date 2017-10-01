@@ -72,7 +72,7 @@ public class PurgeCommand implements ICommand {
             });
         }
 
-        message.getTextChannel().deleteMessages(toDelete).complete();
+        message.getTextChannel().deleteMessages(toDelete).queue();
         sendNotification(message, toDelete.size() - 1);
         sendLog(message.getMember(), message.getTextChannel(), toDelete.size() - 1);
     }
@@ -88,7 +88,7 @@ public class PurgeCommand implements ICommand {
                 .setColor(Color.RED)
                 .setTimestamp(Instant.now()).build();
 
-        member.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).complete();
+        member.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
     private void sendNotification(Message message, int amount) {

@@ -17,43 +17,44 @@ import java.util.Arrays;
 /**
  * @author ZP4RKER
  */
-public class KickCommand implements ICommand {
+public class BanCommand implements ICommand {
 
-    @RegisterCommand(aliases = "kick", showInHelp = false)
+    @RegisterCommand(aliases = "ban")
     public void onCommand(Message message, String[] args) {
         if (!message.getMember().getRoles().contains(Jitters.getStaffRole())) {
             MessageUtils.sendPermError(message);
             return;
         }
         if (args.length < 2) {
-            MessageUtils.sendError("Invalid arguments!", "Usage: `!kick {@user} {reason}`", message);
+            MessageUtils.sendError("Invalid arguments!", "Usage: `!ban {@user} {reason}`", message);
             return;
         }
         if (message.getMentionedUsers().size() < 1) {
             MessageUtils.sendError("Invalid arguments!", "You didn't mention any one!" +
-                    "\nUsage: `!kick {@user} {reason}`", message);
+                    "\nUsage: `!ban {@user} {reason}`", message);
             return;
         }
 
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-        Member member = message.getMember();
+        Member member = message.getGuild().getMember(message.getMentionedUsers().get(0));
 
-        member.getGuild().getController().kick(member, reason).queue(s -> message.addReaction("\uD83D\uDC4C").queue());
+        message.getGuild().getController().ban(member, 7, reason).queue(s -> message.addReaction("\uD83D\uDC4C").queue());
+        sendLog(member, message.getAuthor(), reason);
     }
 
-    private void sendLog(Member kicked, User issuer, String reason) {
+    private void sendLog(Member muted, User issuer, String reason) {
         // Log channel = 314654582183821312L
-        User user = kicked.getUser();
+        User user = muted.getUser();
 
         MessageEmbed embed = new EmbedBuilder()
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
-                .setDescription("Kicked by " + issuer.getAsMention() + ".\n" +
+                .setDescription("Banned by " + issuer.getAsMention() + ".\n" +
                         "**Reason:** " + reason)
                 .setColor(Color.RED)
                 .setTimestamp(Instant.now()).build();
 
-        kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+        muted.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
 }

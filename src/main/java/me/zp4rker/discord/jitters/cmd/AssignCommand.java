@@ -15,11 +15,11 @@ import java.util.TimerTask;
 /**
  * @author ZP4RKER
  */
-public class SAssignCommand implements ICommand {
+public class AssignCommand implements ICommand {
 
-    @RegisterCommand(aliases = {"sassign", "assign"},
+    @RegisterCommand(aliases = "assign",
                     description = "Assigns a role to the user.",
-                    usage = "{prefix}sassign role")
+                    usage = "{prefix}assign role")
     public void onCommand(Message message, String[] args) {
         if (args.length < 1) {
             sendHelp(message);
