@@ -22,6 +22,7 @@ public class PasteUtil {
             con.setRequestMethod("POST");
             con.setDoInput(true);
             con.setDoOutput(true);
+            con.addRequestProperty("User-Agent", "Mozilla/5.0");
             con.connect();
 
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
