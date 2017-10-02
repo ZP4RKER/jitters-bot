@@ -50,8 +50,8 @@ public class BanCommand implements ICommand {
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
                 .setDescription("Banned by " + issuer.getAsMention() + ".\n" +
-                        "**Reason:** " + reason)
-                .setColor(Color.RED)
+                        "Reason: " + reason)
+                .setColor(new Color(240, 71, 71))
                 .setTimestamp(Instant.now()).build();
 
         muted.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();

@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 
+import java.awt.*;
 import java.time.Instant;
 import java.util.Arrays;
 
@@ -97,7 +98,8 @@ public class MuteCommand implements ICommand {
         EmbedBuilder embedBuilder = new EmbedBuilder()
                 .setThumbnail(toMute.getEffectiveAvatarUrl())
                 .setFooter("Muted by " + author.getName() + "#" + author.getDiscriminator(), null)
-                .setTimestamp(Instant.now());
+                .setTimestamp(Instant.now())
+                .setColor(Color.ORANGE);
         if (muted) embedBuilder.setDescription("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been muted!");
         else embedBuilder.setDescription("**" + toMute.getName() + "#" + toMute.getDiscriminator() + "** has been unmuted!");
 

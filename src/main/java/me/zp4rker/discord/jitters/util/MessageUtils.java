@@ -29,7 +29,7 @@ public class MessageUtils {
                 .setTitle(err)
                 .setDescription(content)
                 .setFooter("{} = Required | [] = Optional", null)
-                .setColor(Color.RED).build();
+                .setColor(new Color(240, 71, 71)).build();
         selfDestuct(15000, message.getChannel().sendMessage(embed).complete(), message);
     }
 
@@ -37,7 +37,7 @@ public class MessageUtils {
         MessageEmbed embed = new EmbedBuilder()
                 .setTitle("No Permission")
                 .setDescription("You don't have the permissions required to perform this action!")
-                .setColor(Color.RED).build();
+                .setColor(new Color(240, 71, 71)).build();
         selfDestuct(15000, message.getChannel().sendMessage(embed).complete(), message);
     }
 

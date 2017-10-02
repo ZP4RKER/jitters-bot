@@ -82,10 +82,10 @@ public class PurgeCommand implements ICommand {
         User user = member.getUser();
 
         MessageEmbed embed = new EmbedBuilder()
-                .setAuthor("Channel purged", null, member.getGuild().getIconUrl())
+                .setAuthor("Messages purged", null, member.getGuild().getIconUrl())
                 .setDescription(channel.getAsMention() + " purged by " + user.getAsMention() + ".\n" +
-                        "**Messages:** " + amount + "\n")
-                .setColor(Color.RED)
+                        "Messages: " + amount + "\n")
+                .setColor(Color.ORANGE)
                 .setTimestamp(Instant.now()).build();
 
         member.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();

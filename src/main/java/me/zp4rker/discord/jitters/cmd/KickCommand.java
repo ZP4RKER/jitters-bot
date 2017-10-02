@@ -50,8 +50,8 @@ public class KickCommand implements ICommand {
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
                 .setDescription("Kicked by " + issuer.getAsMention() + ".\n" +
-                        "**Reason:** " + reason)
-                .setColor(Color.RED)
+                        "Reason: " + reason)
+                .setColor(new Color(240, 71, 71))
                 .setTimestamp(Instant.now()).build();
 
         kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
