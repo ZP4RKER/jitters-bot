@@ -21,8 +21,6 @@ import java.util.concurrent.Executors;
  */
 public class Jitters {
 
-    // TODO: Implement ban command
-
     public static ExecutorService async = Executors.newCachedThreadPool();
 
     public static JDA jda;
