@@ -2,6 +2,7 @@ package me.zp4rker.discord.jitters.cmd;
 
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
+import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
@@ -66,7 +67,7 @@ public class MuteCommand implements ICommand {
 
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.handleException(e);
             return false;
         }
     }

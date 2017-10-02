@@ -16,8 +16,6 @@ public class ReadyListener {
     public void onReady(ReadyEvent event) {
         ZLogger.blankLine();
 
-        clearDM();
-
         setRoles();
 
         registerCommand();
@@ -43,11 +41,6 @@ public class ReadyListener {
         Jitters.arrow = Jitters.jda.getRoleById(312572948856832000L);
         Jitters.supergirl = Jitters.jda.getRoleById(312573207632936972L);
         Jitters.legends = Jitters.jda.getRoleById(312573020244017153L);
-    }
-
-    private void clearDM() {
-        Jitters.jda.getUserById(145064570237485056L).openPrivateChannel().queue(s ->
-                s.getHistory().retrievePast(1).queue(messages -> messages.forEach(m -> m.delete().queue())));
     }
 
 }

@@ -3,6 +3,7 @@ package me.zp4rker.discord.core.command.handler;
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
 import me.zp4rker.discord.jitters.Jitters;
+import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -146,7 +147,7 @@ public class CommandHandler {
         try {
             m.invoke(command.getExecutor(), paramaters);
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.handleException(e);
         }
     }
 

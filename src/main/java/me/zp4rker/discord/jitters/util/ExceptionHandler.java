@@ -15,7 +15,7 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread t, Throwable e) {
         ZLogger.err("Encountered an exception! Sending stacktrace in DM.");
-        sendDM(PasteUtil.paste(getStackTrace(e)));
+        sendDM("Encountered an exception! Stacktrace: " + PasteUtil.paste(getStackTrace(e)));
     }
 
     public static void handleException(Exception e) {

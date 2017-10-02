@@ -1,6 +1,7 @@
 package me.zp4rker.discord.jitters;
 
 import me.zp4rker.discord.core.logger.ZLogger;
+import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -114,7 +115,7 @@ public class UpcomingEpisode {
             else return new JSONObject(jsonText);
         } catch (Exception e) {
             ZLogger.warn("Could not get JSON from URL!");
-            e.printStackTrace();
+            ExceptionHandler.handleException(e);
             return null;
         } finally {
             closeInputstream(is);

@@ -31,7 +31,7 @@ class PasteUtil {
             wr.close();
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            return "https://hastebin.com/documents/" + new JSONObject(rd.readLine()).getString("key");
+            return "https://hastebin.com/" + new JSONObject(rd.readLine()).getString("key");
         } catch (Exception e) {
             ZLogger.warn("Could not paste string!");
             e.printStackTrace();
