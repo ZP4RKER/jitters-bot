@@ -7,8 +7,8 @@ import java.util.logging.Level;
  */
 class CustomLevel extends Level {
 
-    CustomLevel(String name) {
-        super(name, Level.SEVERE.intValue() + 1);
+    CustomLevel(String name, int value) {
+        super(name, Level.SEVERE.intValue() + value);
     }
 
 }

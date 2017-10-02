@@ -6,6 +6,7 @@ import me.zp4rker.discord.jitters.lstnr.JoinListener;
 import me.zp4rker.discord.jitters.lstnr.LeaveListener;
 import me.zp4rker.discord.jitters.lstnr.ReadyListener;
 import me.zp4rker.discord.jitters.lstnr.SpamListener;
+import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -32,6 +33,8 @@ public class Jitters {
 
     public static void main(String[] args) throws Exception {
         ZLogger.initialise();
+
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
 
         handler = new CommandHandler("!");
 

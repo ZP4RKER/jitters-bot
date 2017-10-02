@@ -39,11 +39,15 @@ public class ZLogger {
         logger.warning(message + "\n\n");
     }
 
-    public static void debug(String message) {
-        logger.log(new CustomLevel("DEBUG"), message + "\n\n");
+    public static void err(String message) {
+        logger.log(new CustomLevel("ERR", 1), message + "\n\n");
     }
 
-    public static void blankLine() {
+    public static void debug(String message) {
+        logger.log(new CustomLevel("DEBUG", 2), message + "\n\n");
+    }
+
+    private static void blankLine() {
         System.out.println();
     }
 
