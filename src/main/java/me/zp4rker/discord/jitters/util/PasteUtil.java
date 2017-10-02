@@ -19,6 +19,7 @@ public class PasteUtil {
         try {
             URL url = new URL("http://hastebin.com/documents");
             con = (HttpURLConnection) url.openConnection();
+            con.connect();
             con.setRequestMethod("POST");
             con.setDoInput(true);
             con.setDoOutput(true);
