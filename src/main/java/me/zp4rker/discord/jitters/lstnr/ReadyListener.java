@@ -5,6 +5,7 @@ import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
@@ -21,7 +22,8 @@ public class ReadyListener {
 
         //293932140062703627
         Guild guild = event.getJDA().getGuildById(312571375598698507L);
-        ZLogger.debug("Can interact: " + guild.getSelfMember().canInteract(guild.getMemberById(293932140062703627L)));
+        Role role = guild.getRolesByName("Member", false).get(0);
+        ZLogger.debug("Can interact: " + guild.getSelfMember().canInteract(role));
 
         ZLogger.blankLine();
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
