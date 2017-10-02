@@ -21,7 +21,7 @@ public class PurgeCommand implements ICommand {
 
     @RegisterCommand(aliases = "purge")
     public void onCommand(Message message, String[] args) {
-        if (!message.getMember().getRoles().contains(Jitters.getStaffRole())) {
+        if (!message.getMember().getRoles().contains(Jitters.staff)) {
             MessageUtils.sendPermError(message);
             return;
         }

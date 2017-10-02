@@ -16,11 +16,12 @@ public class ReadyListener {
 
     @SubscribeEvent
     public void onReady(ReadyEvent event) {
+        setRoles();
+
         registerCommand();
 
-        new UpcomingEpisode().start();
+        UpcomingEpisode.start();
 
-        ZLogger.blankLine();
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
@@ -28,10 +29,18 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new InfoCommand());
         Jitters.handler.registerCommand(new AssignCommand());
 
-        Jitters.handler.registerCommand(new MuteCommand());
+        //Jitters.handler.registerCommand(new MuteCommand());
         Jitters.handler.registerCommand(new KickCommand());
         Jitters.handler.registerCommand(new BanCommand());
         Jitters.handler.registerCommand(new PurgeCommand());
+    }
+
+    private void setRoles() {
+        Jitters.staff = Jitters.jda.getRoleById(312571560407990272L);
+        Jitters.flash = Jitters.jda.getRoleById(312572739808526336L);
+        Jitters.arrow = Jitters.jda.getRoleById(312572948856832000L);
+        Jitters.supergirl = Jitters.jda.getRoleById(312573207632936972L);
+        Jitters.legends = Jitters.jda.getRoleById(312573020244017153L);
     }
 
 }

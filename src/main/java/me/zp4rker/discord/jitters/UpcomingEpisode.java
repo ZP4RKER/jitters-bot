@@ -21,19 +21,18 @@ import java.util.concurrent.TimeUnit;
  */
 public class UpcomingEpisode {
 
-    private TextChannel flash;
-    private TextChannel arrow;
-    private TextChannel supergirl;
-    private TextChannel legends;
+    private static TextChannel flash;
+    private static TextChannel arrow;
+    private static TextChannel supergirl;
+    private static TextChannel legends;
 
-    public UpcomingEpisode() {
+    public static void start() {
+        // Initialisation
         flash = Jitters.jda.getTextChannelById(312574911199576064L);
         arrow = Jitters.jda.getTextChannelById(312574944137707530L);
         supergirl = Jitters.jda.getTextChannelById(312575189877653504L);
         legends = Jitters.jda.getTextChannelById(312574974005346304L);
-    }
-
-    public void start() {
+        // Timer
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -42,14 +41,14 @@ public class UpcomingEpisode {
         }, 0, 60000);
     }
 
-    private void updateTopics() {
+    private static void updateTopics() {
         flash.getManager().setTopic(getTopic("the-flash")).queue();
         arrow.getManager().setTopic(getTopic("arrow")).queue();
         supergirl.getManager().setTopic(getTopic("supergirl")).queue();
         legends.getManager().setTopic(getTopic("legends-of-tomorrow")).queue();
     }
 
-    private String getTopic(String show) {
+    private static String getTopic(String show) {
         JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
         if (showData == null) return null;
         showData = showData.getJSONObject("show");
@@ -79,7 +78,7 @@ public class UpcomingEpisode {
         return "Next episode: In " + timeLeft + " (" + episodeString + ")";
     }
 
-    private Instant toInstant(String[] date, String[] time) throws Exception {
+    private static Instant toInstant(String[] date, String[] time) throws Exception {
         int year = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
         int day = Integer.parseInt(date[2]);
@@ -90,7 +89,7 @@ public class UpcomingEpisode {
         return ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("GMT")).toInstant();
     }
 
-    private String timeRemaining(Instant instant) {
+    private static String timeRemaining(Instant instant) {
         Instant now = Instant.now();
         long remaining = instant.getEpochSecond() - now.getEpochSecond();
 
@@ -105,7 +104,7 @@ public class UpcomingEpisode {
         return days + "d " + hours + "h " + minutes + "m";
     }
 
-    private JSONObject readJsonFromUrl(String url) {
+    private static JSONObject readJsonFromUrl(String url) {
         InputStream is = null;
         try {
             is = new URL(url).openStream();
@@ -122,7 +121,7 @@ public class UpcomingEpisode {
         }
     }
 
-    private String readAll(Reader rd) throws IOException {
+    private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
         while ((cp = rd.read()) != -1) {
@@ -131,7 +130,7 @@ public class UpcomingEpisode {
         return sb.toString();
     }
 
-    private void closeInputstream(InputStream is) {
+    private static void closeInputstream(InputStream is) {
         try {
             is.close();
         } catch (Exception e) {

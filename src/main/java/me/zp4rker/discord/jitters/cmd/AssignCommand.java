@@ -48,7 +48,7 @@ public class AssignCommand implements ICommand {
             if (role == null) sendError(message);
             else if (message.getMember().getRoles().contains(guild.getRoleById(role))) sendWarning(message);
             else {
-                guild.getController().addRolesToMember(message.getMember(), guild.getRoleById(role)).complete();
+                guild.getController().addRolesToMember(message.getMember(), guild.getRoleById(role)).queue();
                 sendConfirmation(message, guild.getRoleById(role));
             }
         }

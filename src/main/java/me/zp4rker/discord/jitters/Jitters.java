@@ -27,6 +27,9 @@ public class Jitters {
     public static CommandHandler handler;
     public static final String VERSION = "v1.0";
 
+    // Roles
+    public static Role staff, flash, arrow, supergirl, legends;
+
     public static void main(String[] args) throws Exception {
         ZLogger.initialise();
 
@@ -40,10 +43,6 @@ public class Jitters {
                 .addEventListener(new LeaveListener())
                 .addEventListener(new SpamListener())
                 .buildAsync();
-    }
-
-    public static Role getStaffRole() {
-        return jda.getRoleById(312571560407990272L);
     }
 
     public static File getDirectory() throws Exception {
