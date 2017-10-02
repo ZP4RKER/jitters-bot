@@ -24,8 +24,6 @@ public class ZLogger {
             cHandler.setFormatter(new ZFormatter());
             logger.addHandler(cHandler);
             logger.setUseParentHandlers(false);
-            // Starter blank line
-            blankLine();
         } catch (Exception e) {
             logger.severe(e.getMessage());
         }
@@ -47,7 +45,7 @@ public class ZLogger {
         logger.log(new CustomLevel("DEBUG", 2), message + "\n\n");
     }
 
-    private static void blankLine() {
+    public static void blankLine() {
         System.out.println();
     }
 

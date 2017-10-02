@@ -12,9 +12,9 @@ import java.net.URL;
 /**
  * @author ZP4RKER
  */
-public class PasteUtil {
+class PasteUtil {
 
-    public static String paste(String string) {
+    static String paste(String string) {
         HttpsURLConnection con = null;
         try {
             URL url = new URL("https://hastebin.com/documents");

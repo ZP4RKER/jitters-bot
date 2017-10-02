@@ -18,14 +18,19 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
         sendDM(PasteUtil.paste(getStackTrace(e)));
     }
 
-    private String getStackTrace(Throwable aThrowable) {
+    public static void handleException(Exception e) {
+        ZLogger.err("Encountered an exception! Sending stacktrace in DM.");
+        sendDM(PasteUtil.paste(getStackTrace(e)));
+    }
+
+    private static String getStackTrace(Throwable aThrowable) {
         final Writer result = new StringWriter();
         final PrintWriter printWriter = new PrintWriter(result);
         aThrowable.printStackTrace(printWriter);
         return result.toString();
     }
 
-    private void sendDM(String message) {
+    private static void sendDM(String message) {
         Jitters.jda.getUserById(145064570237485056L).openPrivateChannel().queue(s -> s.sendMessage(message).queue());
     }
 

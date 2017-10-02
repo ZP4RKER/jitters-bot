@@ -4,9 +4,6 @@ import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
-import me.zp4rker.discord.jitters.util.PasteUtil;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
@@ -17,6 +14,10 @@ public class ReadyListener {
 
     @SubscribeEvent
     public void onReady(ReadyEvent event) {
+        ZLogger.blankLine();
+
+        clearDM();
+
         setRoles();
 
         registerCommand();
@@ -24,9 +25,6 @@ public class ReadyListener {
         UpcomingEpisode.start();
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
-
-        // Test paste
-        sendDM(PasteUtil.paste("HI!!!\n\nThis is a test paste!! :)"));
     }
 
     private void registerCommand() {
@@ -47,8 +45,9 @@ public class ReadyListener {
         Jitters.legends = Jitters.jda.getRoleById(312573020244017153L);
     }
 
-    private void sendDM(String message) {
-        Jitters.jda.getUserById(145064570237485056L).openPrivateChannel().queue(s -> s.sendMessage(message).queue());
+    private void clearDM() {
+        Jitters.jda.getUserById(145064570237485056L).openPrivateChannel().queue(s ->
+                s.getHistory().retrievePast(1).queue(messages -> messages.forEach(m -> m.delete().queue())));
     }
 
 }
