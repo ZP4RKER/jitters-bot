@@ -12,12 +12,16 @@ import net.dv8tion.jda.core.entities.User;
 
 import java.awt.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author ZP4RKER
  */
 public class KickCommand implements ICommand {
+
+    public static List<String> kicked = new ArrayList<>();
 
     @RegisterCommand(aliases = "kick", showInHelp = false)
     public void onCommand(Message message, String[] args) {
@@ -52,9 +56,10 @@ public class KickCommand implements ICommand {
                 .setDescription("Kicked by " + issuer.getAsMention() + ".\n" +
                         "Reason: " + reason)
                 .setColor(new Color(240, 71, 71))
+                .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
-        kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+        kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue(s -> KickCommand.kicked.add(user.getId()));
     }
 
 }

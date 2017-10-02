@@ -42,9 +42,9 @@ public class BanCommand implements ICommand {
         sendLog(member, message.getAuthor(), reason);
     }
 
-    private void sendLog(Member muted, User issuer, String reason) {
+    private void sendLog(Member baned, User issuer, String reason) {
         // Log channel = 314654582183821312L
-        User user = muted.getUser();
+        User user = baned.getUser();
 
         MessageEmbed embed = new EmbedBuilder()
                 .setThumbnail(user.getEffectiveAvatarUrl())
@@ -52,9 +52,10 @@ public class BanCommand implements ICommand {
                 .setDescription("Banned by " + issuer.getAsMention() + ".\n" +
                         "Reason: " + reason)
                 .setColor(new Color(240, 71, 71))
+                .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
-        muted.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+        baned.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
 }
