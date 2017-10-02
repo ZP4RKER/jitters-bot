@@ -20,11 +20,6 @@ public class ReadyListener {
 
         new UpcomingEpisode().start();
 
-        //293932140062703627
-        Guild guild = event.getJDA().getGuildById(312571375598698507L);
-        Role role = guild.getRolesByName("Member", false).get(0);
-        ZLogger.debug("Can interact: " + guild.getSelfMember().canInteract(role));
-
         ZLogger.blankLine();
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }

@@ -36,9 +36,10 @@ public class KickCommand implements ICommand {
         }
 
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
-        Member member = message.getMember();
+        Member member = message.getGuild().getMember(message.getMentionedUsers().get(0));
 
-        member.getGuild().getController().kick(member, reason).queue(s -> message.addReaction("\uD83D\uDC4C").queue());
+        member.getGuild().getController().kick(member, reason).queue(s -> message.delete().queue());
+        sendLog(member, message.getAuthor(), reason);
     }
 
     private void sendLog(Member kicked, User issuer, String reason) {
