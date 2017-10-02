@@ -32,10 +32,6 @@ public class Jitters {
     public static Role staff, flash, arrow, supergirl, legends;
 
     public static void main(String[] args) throws Exception {
-        ZLogger.initialise();
-
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
-
         handler = new CommandHandler("!");
 
         jda = new JDABuilder(AccountType.BOT).setToken(args[0])
@@ -46,6 +42,10 @@ public class Jitters {
                 .addEventListener(new LeaveListener())
                 .addEventListener(new SpamListener())
                 .buildAsync();
+
+        ZLogger.initialise();
+
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
     }
 
     public static File getDirectory() throws Exception {
