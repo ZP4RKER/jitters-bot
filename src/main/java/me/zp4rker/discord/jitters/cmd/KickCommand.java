@@ -59,7 +59,8 @@ public class KickCommand implements ICommand {
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
-        kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue(s -> KickCommand.kicked.add(user.getId()));
+        KickCommand.kicked.add(user.getId());
+        kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
 }

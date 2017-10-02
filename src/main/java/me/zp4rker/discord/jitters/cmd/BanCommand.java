@@ -55,6 +55,7 @@ public class BanCommand implements ICommand {
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
+        KickCommand.kicked.add(user.getId());
         baned.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
