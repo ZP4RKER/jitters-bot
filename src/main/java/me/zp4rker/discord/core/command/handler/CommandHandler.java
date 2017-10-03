@@ -37,10 +37,10 @@ public class CommandHandler {
         if (event.getGuild() == null) return;
         if (!event.getMessage().getContent().startsWith(prefix)) return;
 
-        String[] splitContent = event.getMessage().getRawContent().toLowerCase().replace(prefix, "").split(" ");
-        if (!commands.containsKey(splitContent[0])) return;
+        String[] splitContent = event.getMessage().getRawContent().replace(prefix, "").split(" ");
+        if (!commands.containsKey(splitContent[0].toLowerCase())) return;
 
-        Command command = commands.get(splitContent[0]);
+        Command command = commands.get(splitContent[0].toLowerCase());
         RegisterCommand annotation = command.getCommandAnnotation();
 
         if (event.getChannelType().equals(ChannelType.PRIVATE) && !annotation.directMessages()) return;
