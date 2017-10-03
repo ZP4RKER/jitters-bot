@@ -63,15 +63,14 @@ public class Jitters {
         try {
             if (!configValid()) {
                 generateConfig();
-            } else {
-                JSONObject data = JSONUtil.readFile(new File(getDirectory(), "conf.json"));
-                String[] messages = toStringArray(data.getJSONArray("join-messages"));
-
-                int max = messages.length;
-                int rand = ThreadLocalRandom.current().nextInt(0, max);
-
-                message =  messages[rand].replace("%user%", user.getAsMention());
             }
+            JSONObject data = JSONUtil.readFile(new File(getDirectory(), "conf.json"));
+            String[] messages = toStringArray(data.getJSONArray("join-messages"));
+
+            int max = messages.length;
+            int rand = ThreadLocalRandom.current().nextInt(0, max);
+
+            message = messages[rand].replace("%user%", user.getAsMention());
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
