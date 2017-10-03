@@ -37,8 +37,8 @@ public class CommandHandler {
         if (event.getGuild() == null) return;
         if (!event.getMessage().getContent().startsWith(prefix)) return;
 
-        String[] splitContent = event.getMessage().getRawContent().replace(prefix, "").split(" ");
-        if (!commands.containsKey(splitContent[0].toLowerCase())) return;
+        String[] splitContent = event.getMessage().getRawContent().toLowerCase().replace(prefix, "").split(" ");
+        if (!commands.containsKey(splitContent[0])) return;
 
         Command command = commands.get(splitContent[0]);
         RegisterCommand annotation = command.getCommandAnnotation();
@@ -167,7 +167,7 @@ public class CommandHandler {
             this.executor = executor;
         }
 
-        public RegisterCommand getCommandAnnotation() {
+        RegisterCommand getCommandAnnotation() {
             return annotation;
         }
 
@@ -175,7 +175,7 @@ public class CommandHandler {
             return method;
         }
 
-        public ICommand getExecutor() {
+        ICommand getExecutor() {
             return executor;
         }
 

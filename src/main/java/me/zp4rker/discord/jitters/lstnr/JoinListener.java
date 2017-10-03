@@ -1,5 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
+import me.zp4rker.discord.jitters.Jitters;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -20,8 +21,7 @@ public class JoinListener {
     @SubscribeEvent
     public void onMemberJoin(GuildMemberJoinEvent event) {
         TextChannel channel = event.getGuild().getTextChannelById(312571375598698507L);
-        String message = "Welcome to Jitters, " + event.getUser().getAsMention() + "!" + " Head on over to " +
-                "<#312817696578469888> and run the command `!assign` to start adding your roles.";
+        String message = Jitters.getWelcomeMessage(event.getUser());
         channel.sendMessage(message).queue(m -> {
             joinMessages.put(event.getUser().getId(), m);
 
