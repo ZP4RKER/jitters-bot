@@ -4,6 +4,7 @@ import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
@@ -21,6 +22,8 @@ public class ReadyListener {
         registerCommand();
 
         UpcomingEpisode.start();
+
+        clearExceptions(event.getJDA());
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
@@ -41,6 +44,11 @@ public class ReadyListener {
         Jitters.arrow = Jitters.jda.getRoleById(312572948856832000L);
         Jitters.supergirl = Jitters.jda.getRoleById(312573207632936972L);
         Jitters.legends = Jitters.jda.getRoleById(312573020244017153L);
+    }
+
+    private void clearExceptions(JDA jda) {
+        jda.getUserById("145064570237485056").openPrivateChannel()
+                .queue(pc -> pc.getHistory().retrievePast(50).queue(msgs -> msgs.forEach(m -> m.delete().queue())));
     }
 
 }

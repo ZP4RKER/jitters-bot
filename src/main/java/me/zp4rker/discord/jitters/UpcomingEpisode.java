@@ -85,7 +85,7 @@ public class UpcomingEpisode {
     private static void startPullTimer(String show, JSONObject episodeData) {
         try {
             Instant instant = toInstant(episodeData);
-            long remaining = (Instant.now().getEpochSecond() - instant.getEpochSecond()) * 1000;
+            long remaining = (instant.getEpochSecond() - Instant.now().getEpochSecond()) * 1000;
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
