@@ -22,10 +22,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class UpcomingEpisode {
 
-    private static TextChannel flash;
-    private static TextChannel arrow;
-    private static TextChannel supergirl;
-    private static TextChannel legends;
+    private static TextChannel flash, arrow, supergirl, legends;
+    private static JSONObject flashData, arrowData, supergirlData, legendsData;
 
     public static void start() {
         // Initialisation
@@ -33,6 +31,11 @@ public class UpcomingEpisode {
         arrow = Jitters.jda.getTextChannelById(312574944137707530L);
         supergirl = Jitters.jda.getTextChannelById(312575189877653504L);
         legends = Jitters.jda.getTextChannelById(312574974005346304L);
+
+        flashData = null;
+        arrowData = null;
+        supergirlData = null;
+        legendsData = null;
         // Timer
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -43,21 +46,81 @@ public class UpcomingEpisode {
     }
 
     private static void updateTopics() {
-        flash.getManager().setTopic(getTopic("the-flash")).queue();
-        arrow.getManager().setTopic(getTopic("arrow")).queue();
-        supergirl.getManager().setTopic(getTopic("supergirl")).queue();
-        legends.getManager().setTopic(getTopic("legends-of-tomorrow")).queue();
+        flash.getManager().setTopic(pullFlash()).queue();
+        arrow.getManager().setTopic(pullArrow()).queue();
+        supergirl.getManager().setTopic(pullSupergirl()).queue();
+        legends.getManager().setTopic(pullLegends()).queue();
+    }
+
+    private static String pullFlash() {
+        if (flashData == null) return getTopic("the-flash");
+        else return topicFromData(flashData);
+    }
+
+    private static String pullArrow() {
+        if (arrowData == null) return getTopic("arrow");
+        else return topicFromData(arrowData);
+    }
+
+    private static String pullSupergirl() {
+        if (supergirlData == null) return getTopic("supergirl");
+        else return topicFromData(supergirlData);
+    }
+
+    private static String pullLegends() {
+        if (legendsData == null) return getTopic("legends-of-tomorrow");
+        else return topicFromData(legendsData);
     }
 
     private static String getTopic(String show) {
-        JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
-        if (showData == null) return null;
-        showData = showData.getJSONObject("show");
-
-        String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
-        JSONObject episodeData = readJsonFromUrl(episodeUrl);
+        JSONObject episodeData = getLatestEpisode(show);
         if (episodeData == null) return null;
 
+        saveData(show, episodeData);
+        startPullTimer(show, episodeData);
+
+        return topicFromData(episodeData);
+    }
+
+    private static void startPullTimer(String show, JSONObject episodeData) {
+        try {
+            Instant instant = toInstant(episodeData);
+            long remaining = (Instant.now().getEpochSecond() - instant.getEpochSecond()) * 1000;
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        JSONObject newData = getLatestEpisode(show);
+                        Instant newTime = toInstant(newData);
+                        if (newTime.getEpochSecond() > instant.getEpochSecond()) saveData(show, newData);
+                        updateTopics();
+                    } catch (Exception e) {
+                        ExceptionHandler.handleException(e);
+                    }
+                }
+            }, remaining + 60000, 600000);
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    private static void saveData(String show, JSONObject episodeData) {
+        switch (show) {
+            case "the-flash":
+                flashData = episodeData;
+                break;
+            case "arrow":
+                arrowData = episodeData;
+                break;
+            case "supergirl":
+                supergirlData = episodeData;
+                break;
+            case "legends-of-tomorrow":
+                legendsData = episodeData;
+        }
+    }
+
+    private static String topicFromData(JSONObject episodeData) {
         String title = episodeData.getString("name");
         String season = episodeData.getInt("season") + "";
         String episode = episodeData.getInt("number") + "";
@@ -79,6 +142,15 @@ public class UpcomingEpisode {
         return "Next episode: In " + timeLeft + " (" + episodeString + ")";
     }
 
+    private static JSONObject getLatestEpisode(String show) {
+        JSONObject showData = readJsonFromUrl("http://api.tvmaze.com/search/shows?q=" + show);
+        if (showData == null) return null;
+        showData = showData.getJSONObject("show");
+
+        String episodeUrl = showData.getJSONObject("_links").getJSONObject("nextepisode").getString("href");
+        return readJsonFromUrl(episodeUrl);
+    }
+
     private static Instant toInstant(String[] date, String[] time) throws Exception {
         int year = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
@@ -88,6 +160,12 @@ public class UpcomingEpisode {
         int minute = Integer.parseInt(time[1]);
 
         return ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("GMT")).toInstant();
+    }
+
+    private static Instant toInstant(JSONObject episodeData) throws Exception {
+        String[] date = episodeData.getString("airdate").split("-");
+        String[] time = episodeData.getString("airtime").split(":");
+        return toInstant(date, time);
     }
 
     private static String timeRemaining(Instant instant) {
