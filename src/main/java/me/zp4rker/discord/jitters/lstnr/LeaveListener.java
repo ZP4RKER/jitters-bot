@@ -19,7 +19,7 @@ public class LeaveListener {
     public void onLeave(GuildMemberLeaveEvent event) {
         String id = event.getUser().getId();
 
-        // Join message handler
+        // Join message delete handler
         if (JoinListener.joinMessages.containsKey(id)) {
             JoinListener.joinMessages.get(id).delete().queue(s -> JoinListener.joinMessages.remove(id));
         }

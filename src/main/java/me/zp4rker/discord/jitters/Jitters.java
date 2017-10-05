@@ -2,10 +2,7 @@ package me.zp4rker.discord.jitters;
 
 import me.zp4rker.discord.core.command.handler.CommandHandler;
 import me.zp4rker.discord.core.logger.ZLogger;
-import me.zp4rker.discord.jitters.lstnr.JoinListener;
-import me.zp4rker.discord.jitters.lstnr.LeaveListener;
-import me.zp4rker.discord.jitters.lstnr.ReadyListener;
-import me.zp4rker.discord.jitters.lstnr.SpamListener;
+import me.zp4rker.discord.jitters.lstnr.*;
 import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.AccountType;
@@ -48,6 +45,7 @@ public class Jitters {
                 .addEventListener(new JoinListener())
                 .addEventListener(new LeaveListener())
                 .addEventListener(new SpamListener())
+                .addEventListener(new RoleListener())
                 .buildAsync();
 
         ZLogger.initialise();
