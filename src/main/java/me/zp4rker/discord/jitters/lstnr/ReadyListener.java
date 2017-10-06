@@ -5,6 +5,7 @@ import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
@@ -24,6 +25,8 @@ public class ReadyListener {
         UpcomingEpisode.start();
 
         clearExceptions(event.getJDA());
+
+        event.getJDA().getPresence().setGame(Game.of("Run !assign to add your roles!"));
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
