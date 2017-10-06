@@ -26,7 +26,7 @@ public class ReadyListener {
 
         clearExceptions(event.getJDA());
 
-        event.getJDA().getPresence().setGame(Game.of("Run !assign to add your roles!"));
+        event.getJDA().getPresence().setGame(Game.of(Jitters.VERSION + " | !assign"));
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
@@ -39,6 +39,8 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new KickCommand());
         Jitters.handler.registerCommand(new BanCommand());
         Jitters.handler.registerCommand(new PurgeCommand());
+
+        Jitters.handler.registerCommand(new RestartCommand());
     }
 
     private void setRoles() {

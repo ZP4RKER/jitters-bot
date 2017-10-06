@@ -20,7 +20,7 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     public static void handleException(Exception e) {
         ZLogger.err("Encountered an exception! Sending stacktrace in DM.");
-        sendDM(PasteUtil.paste(getStackTrace(e)));
+        sendDM("Encountered an exception! Stacktrace: " + PasteUtil.paste(getStackTrace(e)));
     }
 
     private static String getStackTrace(Throwable aThrowable) {
