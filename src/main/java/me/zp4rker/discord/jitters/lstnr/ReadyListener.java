@@ -39,8 +39,6 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new KickCommand());
         Jitters.handler.registerCommand(new BanCommand());
         Jitters.handler.registerCommand(new PurgeCommand());
-
-        Jitters.handler.registerCommand(new RestartCommand());
     }
 
     private void setRoles() {
