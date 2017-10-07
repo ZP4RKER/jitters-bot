@@ -26,6 +26,8 @@ public class EditListener {
         String id = event.getMessageId();
         String content = event.getMessage().getRawContent();
 
+        if (channel.getId().equals("314654582183821312")) return;
+
         try {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));
             JSONArray messageArray = file.has("messages") ? file.getJSONArray("messages") : new JSONArray();

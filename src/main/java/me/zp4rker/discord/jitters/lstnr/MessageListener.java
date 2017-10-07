@@ -22,6 +22,8 @@ public class MessageListener {
         TextChannel channel = event.getChannel();
         Message message = event.getMessage();
 
+        if (channel.getId().equals("314654582183821312")) return;
+
         try {
             JSONObject file = JSONUtil.readFile(getFile(channel));
             JSONArray messageArray = file.has("messages") ? file.getJSONArray("messages") : new JSONArray();

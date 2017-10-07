@@ -22,8 +22,11 @@ public class DeleteListener {
 
     @SubscribeEvent
     public void onDelete(GuildMessageDeleteEvent event) {
+        ExceptionHandler.sendDM(event.getResponseNumber() + "");
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
+
+        if (channel.getId().equals("314654582183821312")) return;
 
         try {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));
