@@ -1,6 +1,7 @@
 package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.jitters.cmd.KickCommand;
+import me.zp4rker.discord.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.User;
@@ -21,7 +22,8 @@ public class LeaveListener {
 
         // Join message delete handler
         if (JoinListener.joinMessages.containsKey(id)) {
-            JoinListener.joinMessages.get(id).delete().queue(s -> JoinListener.joinMessages.remove(id));
+            MessageUtils.selfDestuct(1, JoinListener.joinMessages.get(id));
+            JoinListener.joinMessages.remove(id);
         }
 
         // Leave log handler
