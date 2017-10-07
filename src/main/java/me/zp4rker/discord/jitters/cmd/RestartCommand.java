@@ -15,7 +15,7 @@ public class RestartCommand implements ICommand {
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
-        MessageUtils.selfDestuct(1, message, message.getChannel().sendMessage("`").complete());
+        MessageUtils.selfDestuct(1, message);
 
         message.getJDA().shutdown();
 
