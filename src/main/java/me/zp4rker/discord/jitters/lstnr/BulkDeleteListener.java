@@ -17,6 +17,7 @@ public class BulkDeleteListener implements ICommand {
 
     @SubscribeEvent
     public void onBulkDelete(MessageBulkDeleteEvent event) {
+        ZLogger.debug("Event fired!");
         if (event.getGuild() == null) return;
         bulkDeleted.addAll(event.getMessageIds());
         ZLogger.debug("Added messages to list.");
