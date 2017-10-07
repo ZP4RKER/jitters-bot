@@ -24,7 +24,7 @@ public class MessageListener {
 
         try {
             JSONObject file = JSONUtil.readFile(getFile(channel));
-            JSONArray messageArray = file.getJSONArray("messages");
+            JSONArray messageArray = file.has("messages") ? file.getJSONArray("messages") : new JSONArray();
 
             JSONObject data = new JSONObject();
             data.put("id", message.getId());
