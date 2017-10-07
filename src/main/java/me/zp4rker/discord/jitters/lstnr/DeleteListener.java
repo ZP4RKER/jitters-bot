@@ -1,5 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
+import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
@@ -48,6 +49,7 @@ public class DeleteListener {
             JSONObject data = searchMessage(messagesArray, id);
             if (data == null) return;
 
+            ZLogger.debug("Sending log...");
             sendLog(data);
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
