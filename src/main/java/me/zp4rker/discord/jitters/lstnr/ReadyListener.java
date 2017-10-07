@@ -4,6 +4,7 @@ import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import me.zp4rker.discord.jitters.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
+import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -31,6 +32,8 @@ public class ReadyListener {
         event.getJDA().getPresence().setGame(Game.of(Jitters.VERSION + " | !assign"));
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
+
+        ExceptionHandler.sendDM("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
     private void registerEventListeners(JDA jda) {

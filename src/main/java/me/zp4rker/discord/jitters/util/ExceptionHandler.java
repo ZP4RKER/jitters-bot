@@ -30,7 +30,7 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
         return result.toString();
     }
 
-    private static void sendDM(String message) {
+    public static void sendDM(String message) {
         Jitters.jda.getUserById(145064570237485056L).openPrivateChannel().queue(s -> s.sendMessage(message).queue());
     }
 
