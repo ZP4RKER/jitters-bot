@@ -3,6 +3,7 @@ package me.zp4rker.discord.jitters.cmd;
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
 import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.entities.Message;
 
 /**
@@ -14,7 +15,7 @@ public class RestartCommand implements ICommand {
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
-        message.delete().queue();
+        MessageUtils.selfDestuct(1, message, message.getChannel().sendMessage("`").complete());
 
         try {
             Runtime.getRuntime().exec("/home/bots/start-jitters.sh").waitFor();
