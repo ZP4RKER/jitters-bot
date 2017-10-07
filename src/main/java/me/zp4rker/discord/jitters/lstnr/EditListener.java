@@ -24,7 +24,7 @@ public class EditListener {
     public void onMessageEdit(GuildMessageUpdateEvent event) {
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
-        String content = event.getMessage().getRawContent();
+        String content = event.getMessage().getContent();
 
         if (channel.getId().equals("314654582183821312")) return;
 

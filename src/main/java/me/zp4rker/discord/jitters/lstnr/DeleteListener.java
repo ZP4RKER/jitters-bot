@@ -1,6 +1,7 @@
 package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.jitters.Jitters;
+import me.zp4rker.discord.jitters.cmd.PurgeCommand;
 import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -25,7 +26,10 @@ public class DeleteListener {
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
 
-        if (channel.getId().equals("314654582183821312")) return;
+        if (PurgeCommand.messages.contains(id)) {
+            PurgeCommand.messages.remove(id);
+            return;
+        }
 
         try {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));

@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class PurgeCommand implements ICommand {
 
+    public static List<String> messages = new ArrayList<>();
+
     private int count;
 
     @RegisterCommand(aliases = "purge")
@@ -72,6 +74,7 @@ public class PurgeCommand implements ICommand {
             });
         }
 
+        messages.addAll(toDelete);
         message.getTextChannel().deleteMessages(toDelete).queue();
         sendNotification(message, toDelete.size() - 1);
         sendLog(message.getMember(), message.getTextChannel(), toDelete.size() - 1);
