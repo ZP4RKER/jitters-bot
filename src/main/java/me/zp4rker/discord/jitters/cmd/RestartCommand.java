@@ -17,14 +17,13 @@ public class RestartCommand implements ICommand {
 
         MessageUtils.selfDestuct(1, message, message.getChannel().sendMessage("`").complete());
 
+        message.getJDA().shutdown();
+
         try {
             Runtime.getRuntime().exec("/home/bots/start-jitters.sh").waitFor();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
-
-        message.getJDA().shutdown();
-        System.exit(0);
     }
 
 }
