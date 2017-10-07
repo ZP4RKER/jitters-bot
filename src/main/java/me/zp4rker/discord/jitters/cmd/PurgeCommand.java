@@ -95,7 +95,8 @@ public class PurgeCommand implements ICommand {
         MessageEmbed embed = new EmbedBuilder()
                 .setDescription(message.getAuthor().getAsMention() + " just purged " + amount + " messages.")
                 .setColor(Color.ORANGE).build();
-        MessageUtils.selfDestuct(10000, message.getChannel().sendMessage(embed).complete());
+        MessageUtils.selfDestuct(10000, message.getChannel().sendMessage(embed).complete(),
+                message.getChannel().sendMessage("`").complete());
     }
 
 }
