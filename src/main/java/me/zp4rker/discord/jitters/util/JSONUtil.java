@@ -42,7 +42,7 @@ public class JSONUtil {
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
-        return new JSONObject(data);
+        return data.isEmpty() ? new JSONObject() : new JSONObject(data);
     }
 
     public static void writeFile(String data, File file) {

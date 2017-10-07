@@ -42,12 +42,8 @@ public class Jitters {
                 .setEventManager(new AnnotatedEventManager())
                 .addEventListener(handler)
                 .addEventListener(new ReadyListener())
-                .addEventListener(new JoinListener())
-                .addEventListener(new LeaveListener())
-                .addEventListener(new SpamListener())
-                .addEventListener(new RoleListener())
                 .buildAsync();
-
+        
         ZLogger.initialise();
 
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());

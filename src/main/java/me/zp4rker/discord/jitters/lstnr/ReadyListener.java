@@ -18,6 +18,8 @@ public class ReadyListener {
     public void onReady(ReadyEvent event) {
         ZLogger.blankLine();
 
+        registerEventListeners(event.getJDA());
+
         setRoles();
 
         registerCommand();
@@ -31,6 +33,14 @@ public class ReadyListener {
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
+    private void registerEventListeners(JDA jda) {
+        jda.addEventListener(new JoinListener());
+        jda.addEventListener(new LeaveListener());
+        jda.addEventListener(new SpamListener());
+        jda.addEventListener(new RoleListener());
+        jda.addEventListener(new MessageListener());
+        jda.addEventListener(new DeleteListener());
+    }
     private void registerCommand() {
         Jitters.handler.registerCommand(new InfoCommand());
         Jitters.handler.registerCommand(new AssignCommand());
