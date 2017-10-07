@@ -29,6 +29,13 @@ public class DeleteListener {
             PurgeCommand.messages.remove(id);
             return;
         }*/
+
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
+
         if (BulkDeleteListener.bulkDeleted.contains(id)) {
             BulkDeleteListener.bulkDeleted.remove(id);
             return;
