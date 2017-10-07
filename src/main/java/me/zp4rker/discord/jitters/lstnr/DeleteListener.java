@@ -1,7 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.jitters.Jitters;
-import me.zp4rker.discord.jitters.cmd.PurgeCommand;
 import me.zp4rker.discord.jitters.util.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -26,8 +25,12 @@ public class DeleteListener {
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
 
-        if (PurgeCommand.messages.contains(id)) {
+        /*if (PurgeCommand.messages.contains(id)) {
             PurgeCommand.messages.remove(id);
+            return;
+        }*/
+        if (BulkDeleteListener.bulkDeleted.contains(id)) {
+            BulkDeleteListener.bulkDeleted.remove(id);
             return;
         }
 

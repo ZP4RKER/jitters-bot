@@ -18,8 +18,9 @@ public class MessageUtils {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                if (messages.length < 2) messages[0].delete().complete();
-                else messages[0].getTextChannel().deleteMessages(Arrays.asList(messages)).complete();
+                if (messages.length < 2) messages[0].getTextChannel().deleteMessages(Arrays.asList(messages[0],
+                        messages[0].getChannel().sendMessage("`").complete())).queue();
+                else messages[0].getTextChannel().deleteMessages(Arrays.asList(messages)).queue();
             }
         }, life);
     }
