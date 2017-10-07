@@ -37,7 +37,6 @@ public class MessageListener {
 
             messageArray.put(data);
 
-            file.remove("messages");
             file.put("messages", messageArray);
             JSONUtil.writeFile(file.toString(2), getFile(channel));
         } catch (Exception e) {

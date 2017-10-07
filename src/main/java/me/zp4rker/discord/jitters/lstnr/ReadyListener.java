@@ -40,6 +40,7 @@ public class ReadyListener {
         jda.addEventListener(new RoleListener());
         jda.addEventListener(new MessageListener());
         jda.addEventListener(new DeleteListener());
+        jda.addEventListener(new EditListener());
     }
     private void registerCommand() {
         Jitters.handler.registerCommand(new InfoCommand());
