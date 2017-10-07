@@ -22,7 +22,6 @@ public class DeleteListener {
 
     @SubscribeEvent
     public void onDelete(GuildMessageDeleteEvent event) {
-        ExceptionHandler.sendDM(event.getResponseNumber() + "");
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
 
