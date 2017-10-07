@@ -42,6 +42,7 @@ public class Jitters {
                 .setEventManager(new AnnotatedEventManager())
                 .addEventListener(handler)
                 .addEventListener(new ReadyListener())
+                .setBulkDeleteSplittingEnabled(false)
                 .buildAsync();
         
         ZLogger.initialise();

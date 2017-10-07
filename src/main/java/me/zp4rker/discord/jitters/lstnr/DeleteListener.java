@@ -26,22 +26,6 @@ public class DeleteListener {
         TextChannel channel = event.getChannel();
         String id = event.getMessageId();
 
-        /*if (PurgeCommand.messages.contains(id)) {
-            PurgeCommand.messages.remove(id);
-            return;
-        }*/
-
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            ExceptionHandler.handleException(e);
-        }
-
-        if (BulkDeleteListener.bulkDeleted.contains(id)) {
-            BulkDeleteListener.bulkDeleted.remove(id);
-            return;
-        }
-
         try {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));
             JSONArray messagesArray = file.getJSONArray("messages");
@@ -49,7 +33,6 @@ public class DeleteListener {
             JSONObject data = searchMessage(messagesArray, id);
             if (data == null) return;
 
-            ZLogger.debug("Sending log...");
             sendLog(data);
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
