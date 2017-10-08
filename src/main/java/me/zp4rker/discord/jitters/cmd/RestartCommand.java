@@ -23,6 +23,8 @@ public class RestartCommand implements ICommand {
             message.getJDA().shutdown();
 
             Runtime.getRuntime().exec("/home/bots/start-jitters.sh").waitFor();
+
+            System.exit(0);
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
