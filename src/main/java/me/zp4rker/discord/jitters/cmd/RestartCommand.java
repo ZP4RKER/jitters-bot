@@ -15,11 +15,13 @@ public class RestartCommand implements ICommand {
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
-        MessageUtils.selfDestuct(1, message);
-
-        message.getJDA().shutdown();
-
         try {
+            MessageUtils.selfDestuct(1, message);
+
+            Thread.sleep(1500);
+
+            message.getJDA().shutdown();
+
             Runtime.getRuntime().exec("/home/bots/start-jitters.sh").waitFor();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
