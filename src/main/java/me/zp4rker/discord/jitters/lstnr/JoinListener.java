@@ -11,6 +11,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ZP4RKER
@@ -40,14 +41,34 @@ public class JoinListener {
     }
 
     private void sendLog(User user) {
+        Instant creation = user.getCreationTime().toInstant();
+
         MessageEmbed embed = new EmbedBuilder()
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
                 .setThumbnail(user.getEffectiveAvatarUrl())
-                .setDescription(user.getAsMention() + " joined the server.")
+                .setDescription(user.getAsMention() + " joined the server." +
+                        "\nAccount created " + toTimeString(creation) + " ago.")
                 .setColor(new Color(250, 166, 26))
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
         user.getJDA().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+    }
+
+    private static String toTimeString(Instant instant) {
+        Instant now = Instant.now();
+        long remaining = instant.getEpochSecond() - now.getEpochSecond();
+
+        long days = TimeUnit.SECONDS.toDays(remaining);
+        remaining -= TimeUnit.DAYS.toSeconds(days);
+
+        long hours = TimeUnit.SECONDS.toHours(remaining);
+        remaining -= TimeUnit.HOURS.toSeconds(hours);
+
+        long minutes = TimeUnit.SECONDS.toMinutes(remaining);
+
+        return days + (days == 1 ? "day " : "days ")
+                + hours + (hours == 1 ? "hour " : "hours ") + "and "
+                + minutes + (minutes == 1 ? "minute" : "minutes");
     }
 
 }
