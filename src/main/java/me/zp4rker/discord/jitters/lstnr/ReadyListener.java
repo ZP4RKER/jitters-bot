@@ -2,9 +2,9 @@ package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
-import me.zp4rker.discord.jitters.UpcomingEpisode;
+import me.zp4rker.discord.jitters.util.UpcomingEpisode;
 import me.zp4rker.discord.jitters.cmd.*;
-import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.ReadyEvent;

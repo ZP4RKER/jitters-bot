@@ -1,5 +1,6 @@
 package me.zp4rker.discord.jitters.util;
 
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import org.json.JSONObject;
 
 import java.io.File;

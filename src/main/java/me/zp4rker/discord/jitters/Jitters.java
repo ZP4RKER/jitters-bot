@@ -3,7 +3,7 @@ package me.zp4rker.discord.jitters;
 import me.zp4rker.discord.core.command.handler.CommandHandler;
 import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.lstnr.*;
-import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;

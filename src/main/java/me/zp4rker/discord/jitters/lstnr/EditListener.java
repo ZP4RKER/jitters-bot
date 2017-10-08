@@ -1,6 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
-import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
@@ -54,8 +54,9 @@ public class EditListener {
 
         MessageEmbed embed = new EmbedBuilder()
                 .setAuthor(user.getName() + "#" + user.getDiscriminator(), null, user.getEffectiveAvatarUrl())
-                .setDescription("**Message from " + user.getAsMention() + " edited in **" + channel.getAsMention()
-                            + "\nOld content: ```\n" + oldContent + "```\nNew content: ```\n" + newContent + "```")
+                .setDescription("**Message from " + user.getAsMention() + " edited in **" + channel.getAsMention())
+                .addField("Original", oldContent, false)
+                .addField("New", newContent, false)
                 .setFooter("ID: " + message.getId(), null)
                 .setTimestamp(Instant.now())
                 .setColor(Color.YELLOW).build();

@@ -1,4 +1,4 @@
-package me.zp4rker.discord.jitters.util;
+package me.zp4rker.discord.core.exception;
 
 import me.zp4rker.discord.core.logger.ZLogger;
 import org.json.JSONObject;

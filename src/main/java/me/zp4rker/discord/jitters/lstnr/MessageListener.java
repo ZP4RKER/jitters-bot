@@ -1,7 +1,7 @@
 package me.zp4rker.discord.jitters.lstnr;
 
 import me.zp4rker.discord.jitters.Jitters;
-import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import me.zp4rker.discord.jitters.util.JSONUtil;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;

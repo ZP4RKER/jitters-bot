@@ -1,7 +1,8 @@
-package me.zp4rker.discord.jitters;
+package me.zp4rker.discord.jitters.util;
 
 import me.zp4rker.discord.core.logger.ZLogger;
-import me.zp4rker.discord.jitters.util.ExceptionHandler;
+import me.zp4rker.discord.jitters.Jitters;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONArray;
 import org.json.JSONObject;
