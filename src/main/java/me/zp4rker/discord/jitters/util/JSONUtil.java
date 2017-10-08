@@ -13,23 +13,6 @@ import java.io.IOException;
  */
 public class JSONUtil {
 
-    /*public static JSONObject readFile(File file) {
-        String result = "";
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line);
-                line = br.readLine();
-            }
-            result = sb.toString();
-        } catch(Exception e) {
-            ExceptionHandler.handleException(e);
-        }
-        return new JSONObject(result);
-    }*/
-
     public static JSONObject readFile(File file) {
         String data = "";
         try {

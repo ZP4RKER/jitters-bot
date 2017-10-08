@@ -55,7 +55,7 @@ public class DeleteListener {
                                 + "\n" + data.getString("content"))
                 .setFooter("ID: " + data.getString("id"), null)
                 .setTimestamp(Instant.now())
-                .setColor(new Color(250, 166, 26)).build();
+                .setColor(new Color(240, 71, 71)).build();
 
         Jitters.jda.getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }

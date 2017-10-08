@@ -48,7 +48,7 @@ public class JoinListener {
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setDescription(user.getAsMention() + " joined the server." +
                         "\nAccount created " + toTimeString(creation) + " ago.")
-                .setColor(new Color(250, 166, 26))
+                .setColor(new Color(67, 181, 129))
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
         user.getJDA().getTextChannelById(314654582183821312L).sendMessage(embed).queue();

@@ -42,7 +42,7 @@ public class LeaveListener {
                 .setThumbnail(user.getEffectiveAvatarUrl())
                 .setDescription(user.getAsMention() + " left the server." +
                         "\nUser joined " + toTimeString(joined) + " ago.")
-                .setColor(new Color(250, 166, 26))
+                .setColor(new Color(240, 71, 71))
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
         user.getJDA().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
