@@ -1,12 +1,7 @@
 package me.zp4rker.discord.core.logger;
 
 
-import me.zp4rker.discord.jitters.Jitters;
-
-import java.io.File;
 import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -19,7 +14,6 @@ public class ZLogger {
     public static void initialise() {
         try {
             logger = Logger.getLogger("GBVerify");
-            logger.addHandler(new FileHandler(new File(Jitters.getDirectory(), "latest.log").getPath()));
             ConsoleHandler cHandler = new ConsoleHandler();
             cHandler.setFormatter(new ZFormatter());
             logger.addHandler(cHandler);
