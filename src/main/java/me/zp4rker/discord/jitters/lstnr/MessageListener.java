@@ -23,6 +23,7 @@ public class MessageListener {
         Message message = event.getMessage();
 
         if (channel.getId().equals("314654582183821312")) return;
+        if (event.getAuthor().isBot()) return;
 
         try {
             JSONObject file = JSONUtil.readFile(getFile(channel));

@@ -27,6 +27,7 @@ public class EditListener {
         String content = event.getMessage().getContent();
 
         if (channel.getId().equals("314654582183821312")) return;
+        if (event.getAuthor().isBot()) return;
 
         try {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));
