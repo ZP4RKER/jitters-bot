@@ -44,6 +44,7 @@ public class ReadyListener {
         jda.addEventListener(new MessageListener());
         jda.addEventListener(new DeleteListener());
         jda.addEventListener(new EditListener());
+        jda.addEventListener(new BulkDeleteListener());
     }
     private void registerCommand() {
         Jitters.handler.registerCommand(new InfoCommand());

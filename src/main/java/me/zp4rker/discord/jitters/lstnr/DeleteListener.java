@@ -29,20 +29,25 @@ public class DeleteListener {
             JSONObject file = JSONUtil.readFile(MessageListener.getFile(channel));
             JSONArray messagesArray = file.getJSONArray("messages");
 
-            JSONObject data = searchMessage(messagesArray, id);
-            if (data == null) return;
+            int index = searchForMessage(messagesArray, id);
+            if (index < 0) return;
+            JSONObject data = messagesArray.getJSONObject(index);
 
             sendLog(data);
+
+            messagesArray.remove(index);
+            file.put("messages", messagesArray);
+            JSONUtil.writeFile(file.toString(2), MessageListener.getFile(channel));
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
     }
 
-    private JSONObject searchMessage(JSONArray array, String id) {
+    private int searchForMessage(JSONArray array, String id) {
         for (int i = 0; i < array.length(); i++) {
-            if (array.getJSONObject(i).getString("id").equals(id)) return array.getJSONObject(i);
+            if (array.getJSONObject(i).getString("id").equals(id)) return i;
         }
-        return null;
+        return -1;
     }
 
     private void sendLog(JSONObject data) {
