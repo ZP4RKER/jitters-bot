@@ -55,6 +55,8 @@ public class JoinListener {
     }
 
     private static String toTimeString(Instant instant) {
+        String endString = "";
+
         Instant now = Instant.now();
         long timePast = now.getEpochSecond() - instant.getEpochSecond();
 
@@ -66,9 +68,18 @@ public class JoinListener {
 
         long minutes = TimeUnit.SECONDS.toMinutes(timePast);
 
-        return days + (days == 1 ? " day, " : " days, ")
-                + hours + (hours == 1 ? " hour " : " hours ") + "and "
-                + minutes + (minutes == 1 ? " minute" : " minutes");
+        if (days + hours < 1) {
+            timePast -= TimeUnit.MINUTES.toSeconds(minutes);
+            long seconds = timePast;
+            if (minutes > 0) endString = minutes + (minutes == 1 ? " minute" : " minutes") + " and ";
+            endString += seconds + (seconds == 1 ? "second" : "seconds");
+        } else {
+            endString = days + (days == 1 ? " day, " : " days, ");
+            endString += hours + (hours == 1 ? " hour " : " hours ") + "and ";
+            endString += minutes + (minutes == 1 ? " minute" : " minutes");
+        }
+
+        return endString;
     }
 
 }
