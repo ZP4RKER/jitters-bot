@@ -66,7 +66,7 @@ public class JoinListener {
 
         long minutes = TimeUnit.SECONDS.toMinutes(timePast);
 
-        return days + (days == 1 ? " day " : " days ")
+        return days + (days == 1 ? " day, " : " days, ")
                 + hours + (hours == 1 ? " hour " : " hours ") + "and "
                 + minutes + (minutes == 1 ? " minute" : " minutes");
     }
