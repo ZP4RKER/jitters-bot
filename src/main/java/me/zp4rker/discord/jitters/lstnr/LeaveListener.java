@@ -66,7 +66,7 @@ public class LeaveListener {
             timePast -= TimeUnit.MINUTES.toSeconds(minutes);
             long seconds = timePast;
             if (minutes > 0) endString = minutes + (minutes == 1 ? " minute" : " minutes") + " and ";
-            endString += seconds + (seconds == 1 ? "second" : "seconds");
+            endString += seconds + (seconds == 1 ? " second" : " seconds");
         } else {
             endString = days + (days == 1 ? " day, " : " days, ");
             endString += hours + (hours == 1 ? " hour " : " hours ") + "and ";
