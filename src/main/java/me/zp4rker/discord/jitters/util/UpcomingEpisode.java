@@ -160,7 +160,7 @@ public class UpcomingEpisode {
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
 
-        return ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("GMT")).toInstant();
+        return ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("GMT+4")).toInstant();
     }
 
     private static Instant toInstant(JSONObject episodeData) throws Exception {
