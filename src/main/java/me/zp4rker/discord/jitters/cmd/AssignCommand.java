@@ -59,7 +59,7 @@ public class AssignCommand implements ICommand {
     private void sendHelp(Message message) {
         message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription("**Roles:**\n- The Flash\n- Arrow\n- Legends of Tomorrow\n- Supergirl\n\n" +
-                        "**Usage:**\n`!sassign <role>`")
+                        "**Usage:**\n`!assign <role>`")
                 .setColor(Color.decode("#34c6f2")).build()).queue();
     }
 
