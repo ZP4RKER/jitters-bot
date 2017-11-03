@@ -1,5 +1,6 @@
 package me.zp4rker.discord.jitters.lstnr;
 
+import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.jitters.Jitters;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.*;
@@ -52,6 +53,15 @@ public class JoinListener {
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
         user.getJDA().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+    }
+
+    private void sendDM(User user) {
+        try {
+            String message = "Welcome to Jitters!";
+            user.openPrivateChannel().queue(pc -> pc.sendMessage(message).queue());
+        } catch (Exception e) {
+            ZLogger.warn("Could not send DM to " + user.getId());
+        }
     }
 
     private static String toTimeString(Instant instant) {
