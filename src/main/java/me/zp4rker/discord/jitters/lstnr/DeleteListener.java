@@ -14,11 +14,15 @@ import org.json.JSONObject;
 
 import java.awt.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ZP4RKER
  */
 public class DeleteListener {
+
+    public static List<String> bypass = new ArrayList<>();
 
     @SubscribeEvent
     public void onDelete(GuildMessageDeleteEvent event) {
@@ -33,7 +37,7 @@ public class DeleteListener {
             if (index < 0) return;
             JSONObject data = messagesArray.getJSONObject(index);
 
-            sendLog(data);
+            if (!bypass.contains(event.getMessageId())) sendLog(data);
 
             messagesArray.remove(index);
             file.put("messages", messagesArray);

@@ -16,7 +16,7 @@ public class RestartCommand implements ICommand {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
         try {
-            MessageUtils.selfDestuct(1, message);
+            MessageUtils.bypassLogs(message);
 
             Thread.sleep(1500);
 

@@ -3,6 +3,7 @@ package me.zp4rker.discord.jitters.cmd;
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
 import me.zp4rker.discord.core.exception.ExceptionHandler;
+import me.zp4rker.discord.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
@@ -18,8 +19,7 @@ public class MuteCommand implements ICommand {
 
     @RegisterCommand(aliases = "mute", showInHelp = false)
     public void onMuteCommand(Message message, String[] args) {
-        message.getTextChannel()
-                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).queue();
+        MessageUtils.bypassLogs(message);
         if (!isStaff(message.getMember())) return;
         if (message.getMentionedUsers().size() != 1) return;
         if (args.length < 1) return;
@@ -32,8 +32,7 @@ public class MuteCommand implements ICommand {
 
     @RegisterCommand(aliases = "unmute", showInHelp = false)
     public void onUnmuteCommand(Message message, String[] args) {
-        message.getTextChannel()
-                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).queue();
+        MessageUtils.bypassLogs(message);
         if (!isStaff(message.getMember())) return;
         if (message.getMentionedUsers().size() != 1) return;
         if (args.length < 1) return;

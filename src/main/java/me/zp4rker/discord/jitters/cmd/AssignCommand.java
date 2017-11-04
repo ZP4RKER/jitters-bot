@@ -2,6 +2,7 @@ package me.zp4rker.discord.jitters.cmd;
 
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
+import me.zp4rker.discord.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -53,7 +54,7 @@ public class AssignCommand implements ICommand {
             }
         }
         
-        delete(message);
+        MessageUtils.bypassLogs(message);
     }
 
     private void sendHelp(Message message) {
@@ -88,11 +89,6 @@ public class AssignCommand implements ICommand {
                 message.delete().complete();
             }
         }, delay);
-    }
-
-    private void delete(Message message) {
-        Message msg = message.getChannel().sendMessage("`").complete();
-        message.getTextChannel().deleteMessages(Arrays.asList(message, msg)).queue();
     }
 
 }

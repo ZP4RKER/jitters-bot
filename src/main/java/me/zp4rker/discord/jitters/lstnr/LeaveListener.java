@@ -24,7 +24,7 @@ public class LeaveListener {
 
         // Join message delete handler
         if (JoinListener.joinMessages.containsKey(id)) {
-            MessageUtils.selfDestuct(1, JoinListener.joinMessages.get(id));
+            MessageUtils.bypassLogs(JoinListener.joinMessages.get(id));
             JoinListener.joinMessages.remove(id);
         }
 
