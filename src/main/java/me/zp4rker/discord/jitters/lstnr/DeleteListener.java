@@ -56,6 +56,8 @@ public class DeleteListener {
 
     private void sendLog(JSONObject data) {
         User user = Jitters.jda.getUserById(data.getString("author"));
+        if (user == null) return;
+
         TextChannel channel = Jitters.jda.getTextChannelById(data.getString("channel"));
 
         MessageEmbed embed = new EmbedBuilder()
