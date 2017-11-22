@@ -38,7 +38,7 @@ public class BanCommand implements ICommand {
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
         Member member = message.getGuild().getMember(message.getMentionedUsers().get(0));
 
-        message.getGuild().getController().ban(member, 7, reason).queue(s -> message.addReaction("\uD83D\uDC4C").queue());
+        message.getGuild().getController().ban(member, 7, reason).queue(s -> MessageUtils.bypassLogs(message));
         sendLog(member, message.getAuthor(), reason);
     }
 
