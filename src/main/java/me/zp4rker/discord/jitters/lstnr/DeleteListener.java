@@ -67,7 +67,7 @@ public class DeleteListener {
                 .setDescription("**Message from " + user.getAsMention() + " deleted in **" + channel.getAsMention()
                                 + "\n" + data.getString("content"))
                 .setFooter("ID: " + data.getString("id"), null)
-                .setTimestamp(Instant.now())
+                .setTimestamp(Instant.ofEpochSecond(data.getLong("creation-time")))
                 .setColor(new Color(240, 71, 71)).build();
 
         Jitters.jda.getTextChannelById(314654582183821312L).sendMessage(embed).queue();
