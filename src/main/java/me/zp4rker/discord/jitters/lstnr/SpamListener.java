@@ -20,7 +20,7 @@ public class SpamListener {
     public void onMessage(GuildMessageReceivedEvent event) {
         if (event.getAuthor().getId().equals("145064570237485056")) return;
 
-        String content = event.getMessage().getRawContent();
+        String content = event.getMessage().getContentRaw();
         // Invite links
         if (content.contains("discord.gg")) removeInvite(event.getMessage());
         if (content.contains("discordapp.com/invite")) removeInvite(event.getMessage());

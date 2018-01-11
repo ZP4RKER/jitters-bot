@@ -35,9 +35,9 @@ public class CommandHandler {
     @SubscribeEvent
     public void handle(MessageReceivedEvent event) {
         if (event.getGuild() == null) return;
-        if (!event.getMessage().getContent().startsWith(prefix)) return;
+        if (!event.getMessage().getContentRaw().startsWith(prefix)) return;
 
-        String[] splitContent = event.getMessage().getRawContent().replace(prefix, "").split(" ");
+        String[] splitContent = event.getMessage().getContentRaw().replace(prefix, "").split(" ");
         if (!commands.containsKey(splitContent[0].toLowerCase())) return;
 
         Command command = commands.get(splitContent[0].toLowerCase());

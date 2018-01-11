@@ -34,7 +34,7 @@ public class MessageListener {
             data.put("author", message.getAuthor().getId());
             data.put("channel", message.getChannel().getId());
             data.put("creation-time", message.getCreationTime().toEpochSecond());
-            data.put("content", message.getRawContent());
+            data.put("content", message.getContentRaw());
 
             if (messageArray.length() == 100) messageArray.remove(0);
 

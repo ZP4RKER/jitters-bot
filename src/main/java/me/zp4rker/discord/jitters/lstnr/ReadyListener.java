@@ -29,7 +29,7 @@ public class ReadyListener {
 
         clearExceptions(event.getJDA());
 
-        event.getJDA().getPresence().setGame(Game.of(Jitters.VERSION + " | !assign"));
+        event.getJDA().getPresence().setGame(Game.playing(Jitters.VERSION + " | !assign"));
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
 
