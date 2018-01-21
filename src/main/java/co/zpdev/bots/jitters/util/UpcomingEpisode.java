@@ -1,8 +1,8 @@
 package co.zpdev.bots.jitters.util;
 
+import co.zpdev.bots.core.exception.ExceptionHandler;
 import co.zpdev.bots.core.logger.ZLogger;
 import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.core.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,8 +20,8 @@ import java.util.concurrent.TimeUnit;
 
 public class UpcomingEpisode {
 
-    private static TextChannel flash, arrow, supergirl, legends;
-    private static JSONObject flashData, arrowData, supergirlData, legendsData;
+    private static TextChannel flash, arrow, supergirl, legends, blightning;
+    private static JSONObject flashData, arrowData, supergirlData, legendsData, blightningData;
 
     public static void start() {
         // Initialisation
@@ -29,11 +29,13 @@ public class UpcomingEpisode {
         arrow = Jitters.jda.getTextChannelById(312574944137707530L);
         supergirl = Jitters.jda.getTextChannelById(312575189877653504L);
         legends = Jitters.jda.getTextChannelById(312574974005346304L);
+        blightning = Jitters.jda.getTextChannelById(404630625904230400L);
 
         flashData = null;
         arrowData = null;
         supergirlData = null;
         legendsData = null;
+        blightningData = null;
         // Timer
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -48,6 +50,7 @@ public class UpcomingEpisode {
         arrow.getManager().setTopic(pullArrow()).queue();
         supergirl.getManager().setTopic(pullSupergirl()).queue();
         legends.getManager().setTopic(pullLegends()).queue();
+        blightning.getManager().setTopic(pullBLightning()).queue();
     }
 
     private static String pullFlash() {
@@ -68,6 +71,11 @@ public class UpcomingEpisode {
     private static String pullLegends() {
         if (legendsData == null) return getTopic("legends-of-tomorrow");
         else return topicFromData(legendsData);
+    }
+
+    private static String pullBLightning() {
+        if (blightningData == null) return getTopic("black-lightning");
+        else return topicFromData(blightningData);
     }
 
     private static String getTopic(String show) {
@@ -115,6 +123,8 @@ public class UpcomingEpisode {
                 break;
             case "legends-of-tomorrow":
                 legendsData = episodeData;
+            case "black-lightning":
+                blightningData = episodeData;
         }
     }
 
@@ -149,7 +159,7 @@ public class UpcomingEpisode {
         return readJsonFromUrl(episodeUrl);
     }
 
-    private static Instant toInstant(String[] date, String[] time) throws Exception {
+    private static Instant toInstant(String[] date, String[] time) {
         int year = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
         int day = Integer.parseInt(date[2]);
@@ -160,7 +170,7 @@ public class UpcomingEpisode {
         return ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("America/New_York")).toInstant();
     }
 
-    private static Instant toInstant(JSONObject episodeData) throws Exception {
+    private static Instant toInstant(JSONObject episodeData) {
         String[] date = episodeData.getString("airdate").split("-");
         String[] time = episodeData.getString("airtime").split(":");
         return toInstant(date, time);

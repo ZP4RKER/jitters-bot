@@ -37,6 +37,9 @@ public class AssignCommand implements ICommand {
                 case "SUPERGIRL":
                     role = "312573207632936972";
                     break;
+                case "BLACKLIGHTNING":
+                    role = "404616536133861377";
+                    break;
                 default: role = null;
             }
 
@@ -55,7 +58,7 @@ public class AssignCommand implements ICommand {
 
     private void sendHelp(Message message) {
         message.getTextChannel().sendMessage(new EmbedBuilder()
-                .setDescription("**Roles:**\n- The Flash\n- Arrow\n- Legends of Tomorrow\n- Supergirl\n\n" +
+                .setDescription("**Roles:**\n- The Flash\n- Arrow\n- Legends of Tomorrow\n- Supergirl\n- Black Lightning\n\n" +
                         "**Usage:**\n`!assign <role>`")
                 .setColor(Color.decode("#34c6f2")).build()).queue();
     }

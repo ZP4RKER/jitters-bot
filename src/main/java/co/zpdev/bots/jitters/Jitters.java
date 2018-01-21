@@ -26,7 +26,7 @@ public class Jitters {
     public static final String VERSION = "v1.2";
 
     // Roles
-    public static Role staff, flash, arrow, supergirl, legends;
+    public static Role staff, flash, arrow, supergirl, legends, blightning;
 
     public static void main(String[] args) throws Exception {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
