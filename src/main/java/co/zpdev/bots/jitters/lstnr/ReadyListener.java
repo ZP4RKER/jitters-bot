@@ -18,7 +18,7 @@ public class ReadyListener {
 
         registerEventListeners(event.getJDA());
 
-        setRoles();
+        Jitters.staff = Jitters.jda.getRoleById(312571560407990272L);
 
         registerCommand();
 
@@ -52,14 +52,6 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new PurgeCommand());
 
         Jitters.handler.registerCommand(new RestartCommand());
-    }
-
-    private void setRoles() {
-        Jitters.staff = Jitters.jda.getRoleById(312571560407990272L);
-        Jitters.flash = Jitters.jda.getRoleById(312572739808526336L);
-        Jitters.arrow = Jitters.jda.getRoleById(312572948856832000L);
-        Jitters.supergirl = Jitters.jda.getRoleById(312573207632936972L);
-        Jitters.legends = Jitters.jda.getRoleById(312573020244017153L);
     }
 
     private void clearExceptions(JDA jda) {

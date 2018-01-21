@@ -23,10 +23,10 @@ public class Jitters {
 
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.2";
+    public static final String VERSION = "v1.3";
 
-    // Roles
-    public static Role staff, flash, arrow, supergirl, legends, blightning;
+    // Staff role
+    public static Role staff;
 
     public static void main(String[] args) throws Exception {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
