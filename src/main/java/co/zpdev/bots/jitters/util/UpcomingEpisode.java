@@ -123,6 +123,7 @@ public class UpcomingEpisode {
                 break;
             case "legends-of-tomorrow":
                 legendsData = episodeData;
+                break;
             case "black-lightning":
                 blightningData = episodeData;
         }
