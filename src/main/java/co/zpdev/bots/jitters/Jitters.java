@@ -1,10 +1,9 @@
 package co.zpdev.bots.jitters;
 
-import co.zpdev.bots.jitters.lstnr.ReadyListener;
 import co.zpdev.bots.core.command.handler.CommandHandler;
-import co.zpdev.bots.core.logger.ZLogger;
-import me.zp4rker.discord.jitters.lstnr.*;
 import co.zpdev.bots.core.exception.ExceptionHandler;
+import co.zpdev.bots.core.logger.ZLogger;
+import co.zpdev.bots.jitters.lstnr.ReadyListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;

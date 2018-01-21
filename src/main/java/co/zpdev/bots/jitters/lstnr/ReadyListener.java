@@ -1,11 +1,10 @@
 package co.zpdev.bots.jitters.lstnr;
 
+import co.zpdev.bots.core.exception.ExceptionHandler;
 import co.zpdev.bots.core.logger.ZLogger;
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.bots.jitters.cmd.*;
 import co.zpdev.bots.jitters.util.UpcomingEpisode;
-import me.zp4rker.discord.jitters.cmd.*;
-import co.zpdev.bots.core.exception.ExceptionHandler;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -48,7 +47,6 @@ public class ReadyListener {
         Jitters.handler.registerCommand(new InfoCommand());
         Jitters.handler.registerCommand(new AssignCommand());
 
-        //Jitters.handler.registerCommand(new MuteCommand());
         Jitters.handler.registerCommand(new KickCommand());
         Jitters.handler.registerCommand(new BanCommand());
         Jitters.handler.registerCommand(new PurgeCommand());
