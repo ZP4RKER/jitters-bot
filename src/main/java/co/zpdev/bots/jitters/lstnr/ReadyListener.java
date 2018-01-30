@@ -38,11 +38,8 @@ public class ReadyListener {
         jda.addEventListener(new LeaveListener());
         jda.addEventListener(new SpamListener());
         jda.addEventListener(new RoleListener());
-        jda.addEventListener(new MessageListener());
-        jda.addEventListener(new DeleteListener());
-        jda.addEventListener(new EditListener());
-        jda.addEventListener(new BulkDeleteListener());
     }
+
     private void registerCommand() {
         Jitters.handler.registerCommand(new InfoCommand());
         Jitters.handler.registerCommand(new AssignCommand());

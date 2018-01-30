@@ -10,6 +10,8 @@ import net.dv8tion.jda.core.hooks.SubscribeEvent;
 
 import java.awt.*;
 import java.time.Instant;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SpamListener {
 
@@ -40,7 +42,14 @@ public class SpamListener {
                 .setTimestamp(Instant.now()).build();
 
         logs.sendMessage(embed).queue();
-        message.getTextChannel().sendMessage(message.getAuthor().getAsMention() + ", please do not send invite links.").queue();
+        message.getTextChannel().sendMessage(message.getAuthor().getAsMention() + ", please do not send invite links.").queue(m ->
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        m.delete().queue();
+                    }
+                }, 15000)
+        );
     }
 
     private void removeSpam(Message message) {
@@ -56,7 +65,14 @@ public class SpamListener {
                 .setTimestamp(Instant.now()).build();
 
         logs.sendMessage(embed).queue();
-        message.getTextChannel().sendMessage(message.getAuthor().getAsMention() + ", please do not spam.").queue();
+        message.getTextChannel().sendMessage(message.getAuthor().getAsMention() + ", please do not spam.").queue(m ->
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        m.delete().queue();
+                    }
+                }, 15000)
+        );
     }
 
 }

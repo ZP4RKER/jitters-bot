@@ -16,11 +16,6 @@
             <id>bintray-dv8fromtheworld-maven</id>
             <url>https://dl.bintray.com/dv8fromtheworld/maven</url>
         </repository>
-        <repository>
-            <name>bintray-central</name>
-            <id>central</id>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
     </repositories>
 
     <dependencies>

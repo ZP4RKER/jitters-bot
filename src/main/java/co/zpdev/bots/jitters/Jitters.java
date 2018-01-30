@@ -11,8 +11,6 @@ import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
-import java.io.File;
-import java.net.URISyntaxException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
@@ -70,10 +68,6 @@ public class Jitters {
         int rand = ThreadLocalRandom.current().nextInt(0, max);
 
         return messages[rand].replace("%user%", user.getAsMention());
-    }
-
-    public static File getDirectory() throws URISyntaxException {
-        return new File(Jitters.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile();
     }
 
 }
