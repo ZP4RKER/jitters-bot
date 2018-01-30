@@ -1,18 +1,15 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.ICommand;
-import co.zpdev.bots.core.command.RegisterCommand;
+import co.zpdev.bots.core.command.Command;
 import co.zpdev.bots.jitters.Jitters;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
-public class InfoCommand implements ICommand {
+public class InfoCommand {
 
-    @RegisterCommand(aliases = "info",
-                    description = "Displays info about the bot.",
-                    usage = "{prefix}info")
+    @Command(aliases = "info")
     public void onCommand(Message message) {
         message.getChannel().sendMessage(compileEmbed(message.getJDA())).queue();
     }

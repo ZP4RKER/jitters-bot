@@ -1,6 +1,5 @@
 package co.zpdev.bots.jitters.util;
 
-import co.zpdev.bots.jitters.lstnr.DeleteListener;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
@@ -16,7 +15,6 @@ public class MessageUtils {
         if (messages.length > 1) {
             messages[0].getTextChannel().deleteMessages(Arrays.asList(messages)).queue();
         } else {
-            DeleteListener.bypass.add(messages[0].getId());
             messages[0].delete().queue();
         }
     }

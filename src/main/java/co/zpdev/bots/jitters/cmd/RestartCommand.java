@@ -1,14 +1,13 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.jitters.util.MessageUtils;
-import co.zpdev.bots.core.command.ICommand;
-import co.zpdev.bots.core.command.RegisterCommand;
+import co.zpdev.bots.core.command.Command;
 import co.zpdev.bots.core.exception.ExceptionHandler;
+import co.zpdev.bots.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.entities.Message;
 
-public class RestartCommand implements ICommand {
+public class RestartCommand {
 
-    @RegisterCommand(aliases = "restart")
+    @Command(aliases = "restart")
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
@@ -23,7 +22,7 @@ public class RestartCommand implements ICommand {
 
             System.exit(0);
         } catch (Exception e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.handleException("Restart command", e);
         }
     }
 

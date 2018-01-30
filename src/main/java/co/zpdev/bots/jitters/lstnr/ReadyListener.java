@@ -14,7 +14,7 @@ public class ReadyListener {
 
     @SubscribeEvent
     public void onReady(ReadyEvent event) {
-        ZLogger.blankLine();
+        ZLogger.initialise();
 
         registerEventListeners(event.getJDA());
 
@@ -29,8 +29,6 @@ public class ReadyListener {
         event.getJDA().getPresence().setGame(Game.playing(Jitters.VERSION + " | !assign"));
 
         ZLogger.info("Jitters " + Jitters.VERSION + " started successfully!");
-
-        ExceptionHandler.sendDM("Jitters " + Jitters.VERSION + " started successfully!");
     }
 
     private void registerEventListeners(JDA jda) {

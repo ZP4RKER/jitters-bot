@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class UpcomingEpisode {
@@ -46,11 +47,13 @@ public class UpcomingEpisode {
     }
 
     private static void updateTopics() {
-        flash.getManager().setTopic(pullFlash()).queue();
-        arrow.getManager().setTopic(pullArrow()).queue();
-        supergirl.getManager().setTopic(pullSupergirl()).queue();
-        legends.getManager().setTopic(pullLegends()).queue();
-        blightning.getManager().setTopic(pullBLightning()).queue();
+        Executors.newSingleThreadExecutor().submit(() -> {
+            flash.getManager().setTopic(pullFlash()).queue();
+            arrow.getManager().setTopic(pullArrow()).queue();
+            supergirl.getManager().setTopic(pullSupergirl()).queue();
+            legends.getManager().setTopic(pullLegends()).queue();
+            blightning.getManager().setTopic(pullBLightning()).queue();
+        });
     }
 
     private static String pullFlash() {
@@ -101,12 +104,12 @@ public class UpcomingEpisode {
                         if (newTime.getEpochSecond() > instant.getEpochSecond()) saveData(show, newData);
                         updateTopics();
                     } catch (Exception e) {
-                        ExceptionHandler.handleException(e);
+                        ExceptionHandler.handleException("Updating topics", e);
                     }
                 }
             }, remaining + 60000, 600000);
         } catch (Exception e) {
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.handleException("Starting pull timer", e);
         }
     }
 
@@ -201,8 +204,7 @@ public class UpcomingEpisode {
             if (jsonText.startsWith("[")) return new JSONArray(jsonText).getJSONObject(0);
             else return new JSONObject(jsonText);
         } catch (Exception e) {
-            ZLogger.warn("Could not get JSON from URL!");
-            ExceptionHandler.handleException(e);
+            ExceptionHandler.handleException("Reading JSON from URL", e);
             return null;
         } finally {
             closeInputstream(is);

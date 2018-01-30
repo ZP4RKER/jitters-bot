@@ -1,8 +1,7 @@
 package co.zpdev.bots.jitters.cmd;
 
+import co.zpdev.bots.core.command.Command;
 import co.zpdev.bots.jitters.util.MessageUtils;
-import co.zpdev.bots.core.command.ICommand;
-import co.zpdev.bots.core.command.RegisterCommand;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -12,11 +11,9 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AssignCommand implements ICommand {
+public class AssignCommand {
 
-    @RegisterCommand(aliases = "assign",
-                    description = "Assigns a role to the user.",
-                    usage = "{prefix}assign role")
+    @Command(aliases = "assign")
     public void onCommand(Message message, String[] args) {
         if (args.length < 1) {
             sendHelp(message);

@@ -1,8 +1,7 @@
 package co.zpdev.bots.jitters.cmd;
 
+import co.zpdev.bots.core.command.Command;
 import co.zpdev.bots.jitters.util.MessageUtils;
-import co.zpdev.bots.core.command.ICommand;
-import co.zpdev.bots.core.command.RegisterCommand;
 import co.zpdev.bots.jitters.Jitters;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
@@ -14,9 +13,9 @@ import java.awt.*;
 import java.time.Instant;
 import java.util.Arrays;
 
-public class BanCommand implements ICommand {
+public class BanCommand {
 
-    @RegisterCommand(aliases = "ban")
+    @Command(aliases = "ban")
     public void onCommand(Message message, String[] args) {
         if (!message.getMember().getRoles().contains(Jitters.staff)) {
             MessageUtils.sendPermError(message);

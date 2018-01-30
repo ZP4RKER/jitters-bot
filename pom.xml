@@ -12,17 +12,16 @@
 
     <repositories>
         <repository>
-            <name>bintray</name>
-            <id>bintray-dv8fromtheworld-maven</id>
-            <url>https://dl.bintray.com/dv8fromtheworld/maven</url>
+            <id>zpdev</id>
+            <url>https://cdn.rawgit.com/ZP4RKER/maven/master</url>
         </repository>
     </repositories>
 
     <dependencies>
         <!-- JDA -->
         <dependency>
-            <groupId>net.dv8tion</groupId>
-            <artifactId>JDA</artifactId>
+            <groupId>co.zpdev.bots</groupId>
+            <artifactId>core</artifactId>
             <version>LATEST</version>
         </dependency>
     </dependencies>
