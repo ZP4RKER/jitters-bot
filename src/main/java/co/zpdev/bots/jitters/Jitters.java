@@ -29,7 +29,7 @@ public class Jitters {
     public static void main(String[] args) throws Exception {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
 
-        handler = new CommandHandler("!", Executors.newCachedThreadPool());
+        handler = new CommandHandler("!", "co.zpdev.bots.jitters.cmd");
 
         jda = new JDABuilder(AccountType.BOT).setToken(args[0])
                 .setEventManager(new AnnotatedEventManager())

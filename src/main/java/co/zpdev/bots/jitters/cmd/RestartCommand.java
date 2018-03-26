@@ -5,6 +5,9 @@ import co.zpdev.bots.core.exception.ExceptionHandler;
 import co.zpdev.bots.jitters.util.MessageUtils;
 import net.dv8tion.jda.core.entities.Message;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class RestartCommand {
 
     @Command(aliases = "restart")
@@ -14,11 +17,16 @@ public class RestartCommand {
         try {
             MessageUtils.bypassLogs(message);
 
-            Thread.sleep(1500);
+            InputStream is = Runtime.getRuntime().exec("/home/zp4rker/start-jitters.sh").getInputStream();
+            InputStreamReader rd = new InputStreamReader(is);
+            int c; StringBuilder sb = new StringBuilder();
+            while ((c = rd.read()) != -1) {
+                sb.append((char) c);
+            }
+            rd.close();
+            message.getChannel().sendMessage("```" + sb.toString() + "```").complete();
 
             message.getJDA().shutdown();
-
-            Runtime.getRuntime().exec("/home/zp4rker/start-jitters.sh").waitFor();
 
             System.exit(0);
         } catch (Exception e) {

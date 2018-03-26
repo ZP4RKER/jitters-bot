@@ -38,9 +38,9 @@ public class BanCommand {
         sendLog(member, message.getAuthor(), reason);
     }
 
-    private void sendLog(Member baned, User issuer, String reason) {
+    private void sendLog(Member banned, User issuer, String reason) {
         // Log channel = 314654582183821312L
-        User user = baned.getUser();
+        User user = banned.getUser();
 
         MessageEmbed embed = new EmbedBuilder()
                 .setThumbnail(user.getEffectiveAvatarUrl())
@@ -52,7 +52,7 @@ public class BanCommand {
                 .setTimestamp(Instant.now()).build();
 
         KickCommand.kicked.add(user.getId());
-        baned.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
+        banned.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
 }

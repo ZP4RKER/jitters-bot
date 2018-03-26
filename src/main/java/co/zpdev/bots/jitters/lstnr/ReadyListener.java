@@ -1,9 +1,7 @@
 package co.zpdev.bots.jitters.lstnr;
 
-import co.zpdev.bots.core.exception.ExceptionHandler;
 import co.zpdev.bots.core.logger.ZLogger;
 import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.cmd.*;
 import co.zpdev.bots.jitters.util.UpcomingEpisode;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
@@ -20,8 +18,6 @@ public class ReadyListener {
 
         Jitters.staff = Jitters.jda.getRoleById(312571560407990272L);
 
-        registerCommand();
-
         UpcomingEpisode.start();
 
         clearExceptions(event.getJDA());
@@ -36,17 +32,6 @@ public class ReadyListener {
         jda.addEventListener(new LeaveListener());
         jda.addEventListener(new SpamListener());
         jda.addEventListener(new RoleListener());
-    }
-
-    private void registerCommand() {
-        Jitters.handler.registerCommand(new InfoCommand());
-        Jitters.handler.registerCommand(new AssignCommand());
-
-        Jitters.handler.registerCommand(new KickCommand());
-        Jitters.handler.registerCommand(new BanCommand());
-        Jitters.handler.registerCommand(new PurgeCommand());
-
-        Jitters.handler.registerCommand(new RestartCommand());
     }
 
     private void clearExceptions(JDA jda) {
