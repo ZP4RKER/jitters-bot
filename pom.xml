@@ -8,7 +8,7 @@
 
     <groupId>me.zp4rker.discord</groupId>
     <artifactId>jitters</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.7</version>
 
     <repositories>
         <repository>

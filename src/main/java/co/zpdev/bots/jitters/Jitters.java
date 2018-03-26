@@ -11,17 +11,13 @@ import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Jitters {
 
-    public static ExecutorService async = Executors.newCachedThreadPool();
-
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.0.5";
+    public static final String VERSION = "v1.0.7";
 
     // Staff role
     public static Role staff;
