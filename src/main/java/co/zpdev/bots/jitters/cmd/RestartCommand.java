@@ -26,7 +26,7 @@ public class RestartCommand {
             rd.close();
 
             String response = sb.toString().contains("Already up-to-date.") ? "" : "```Updated!```";
-            message.getChannel().sendMessage("```" + sb.toString() + "```").complete();
+            message.getChannel().sendMessage(response).complete();
 
             message.getJDA().shutdown();
 
