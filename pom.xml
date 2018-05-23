@@ -8,7 +8,7 @@
 
     <groupId>me.zp4rker.discord</groupId>
     <artifactId>jitters</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 
     <repositories>
         <repository>
@@ -18,11 +18,11 @@
     </repositories>
 
     <dependencies>
-        <!-- JDA -->
+        <!-- Core -->
         <dependency>
             <groupId>co.zpdev.bots</groupId>
             <artifactId>core</artifactId>
-            <version>LATEST</version>
+            <version>1.1.3</version>
         </dependency>
     </dependencies>
 
