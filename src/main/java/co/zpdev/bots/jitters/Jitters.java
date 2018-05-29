@@ -17,7 +17,7 @@ public class Jitters {
 
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.1.1";
+    public static final String VERSION = "v1.2.1";
 
     // Staff role
     public static Role staff;
