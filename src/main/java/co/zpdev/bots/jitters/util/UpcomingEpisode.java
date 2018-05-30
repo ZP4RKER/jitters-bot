@@ -19,6 +19,14 @@ import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Handles the data for new episodes.
+ *
+ * TODO: Rewrite
+ *
+ * @author zpdev
+ * @version 0.9_ALPHA
+ */
 public class UpcomingEpisode {
 
     private static TextChannel flash, arrow, supergirl, legends, blightning;

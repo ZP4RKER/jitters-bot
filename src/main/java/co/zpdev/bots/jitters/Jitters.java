@@ -13,11 +13,17 @@ import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The official Discord bot for Jitters.
+ *
+ * @author zpdev
+ * @version v1.2.2
+ */
 public class Jitters {
 
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.2.1";
+    public static final String VERSION = "v1.2.2";
 
     // Staff role
     public static Role staff;
@@ -37,6 +43,7 @@ public class Jitters {
         ZLogger.initialise();
     }
 
+    // TODO: Move to resource file
     private static String[] messages = new String[]{
             // Flash
             "My name is %user%. And I am the fastest man alive. To the outside world, I'm an ordinary forensic scientist. " +
@@ -59,6 +66,7 @@ public class Jitters {
                     "I walk my path alone because, let's be honest... who would be crazy enough to walk it with me?"
     };
 
+    // TODO: Move to co.zpdev.bots.jitters.lstnr.JoinListener
     public static String getWelcomeMessage(User user) {
         int max = messages.length;
         int rand = ThreadLocalRandom.current().nextInt(0, max);

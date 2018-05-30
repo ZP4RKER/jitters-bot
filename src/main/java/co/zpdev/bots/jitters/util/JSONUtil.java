@@ -6,8 +6,23 @@ import org.json.JSONObject;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Util class for reading and writing JSON files, both locally and via the web.
+ *
+ * TODO: Move to core
+ * TODO: Add read from web support
+ *
+ * @author zpdev
+ * @version 0.9_BETA
+ */
 public class JSONUtil {
 
+    /**
+     * Reads JSON data from a file.
+     *
+     * @param file the file to read
+     * @return the parsed JSONObject
+     */
     public static JSONObject readFile(File file) {
         String data = "";
         try {
@@ -24,9 +39,16 @@ public class JSONUtil {
         return data.isEmpty() ? new JSONObject() : new JSONObject(data);
     }
 
+    /**
+     * Writes data to a file.
+     *
+     * @param data the data to write
+     * @param file the file to write to
+     */
     public static void writeFile(String data, File file) {
         try {
-            makeFile(file);
+            if (!file.getParentFile().exists()) file.getParentFile().mkdir();
+            if (!file.exists()) file.createNewFile();
 
             BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
             wr.write(data);
@@ -35,11 +57,6 @@ public class JSONUtil {
         } catch (Exception e) {
             ExceptionHandler.handleException("Writing file", e);
         }
-    }
-
-    private static void makeFile(File file) throws IOException {
-        if (!file.getParentFile().exists()) file.getParentFile().mkdir();
-        if (!file.exists()) file.createNewFile();
     }
 
 }
