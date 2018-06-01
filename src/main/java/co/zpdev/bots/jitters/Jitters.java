@@ -1,9 +1,8 @@
 package co.zpdev.bots.jitters;
 
-import co.zpdev.bots.core.command.handler.CommandHandler;
-import co.zpdev.bots.core.exception.ExceptionHandler;
-import co.zpdev.bots.core.logger.ZLogger;
 import co.zpdev.bots.jitters.lstnr.ReadyListener;
+import co.zpdev.core.discord.command.CommandHandler;
+import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -17,19 +16,20 @@ import java.util.concurrent.ThreadLocalRandom;
  * The official Discord bot for Jitters.
  *
  * @author zpdev
- * @version v1.2.2
+ * @version v1.2.3
  */
 public class Jitters {
 
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.2.2";
+    public static final String VERSION = "v1.2.3";
 
     // Staff role
     public static Role staff;
 
     public static void main(String[] args) throws Exception {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+        ExceptionHandler.init(args[1], "Jitters");
 
         handler = new CommandHandler("!", "co.zpdev.bots.jitters.cmd");
 
@@ -39,8 +39,6 @@ public class Jitters {
                 .addEventListener(new ReadyListener())
                 .setBulkDeleteSplittingEnabled(false)
                 .buildAsync();
-
-        ZLogger.initialise();
     }
 
     // TODO: Move to resource file

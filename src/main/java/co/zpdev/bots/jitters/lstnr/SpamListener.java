@@ -16,7 +16,7 @@ import java.util.TimerTask;
 /**
  * Detects and handles spam/invite links.
  *
- * TODO: Rewrite
+ * TODO: Rewrite?
  *
  * @author zpdev
  */

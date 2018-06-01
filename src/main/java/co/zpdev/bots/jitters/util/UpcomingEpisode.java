@@ -1,8 +1,7 @@
 package co.zpdev.bots.jitters.util;
 
-import co.zpdev.bots.core.exception.ExceptionHandler;
-import co.zpdev.bots.core.logger.ZLogger;
 import co.zpdev.bots.jitters.Jitters;
+import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -117,7 +116,7 @@ public class UpcomingEpisode {
                 }
             }, remaining + 60000, 600000);
         } catch (Exception e) {
-            ExceptionHandler.handleException("Starting pull timer", e);
+            ExceptionHandler.handleException("starting pull timer", e);
         }
     }
 
@@ -152,7 +151,7 @@ public class UpcomingEpisode {
         try {
             instant = toInstant(date, time);
         } catch (Exception e) {
-            ZLogger.warn("Could not get episode airdate/time!");
+            ExceptionHandler.handleException("getting episode airtime", e);
             return null;
         }
 
@@ -212,7 +211,7 @@ public class UpcomingEpisode {
             if (jsonText.startsWith("[")) return new JSONArray(jsonText).getJSONObject(0);
             else return new JSONObject(jsonText);
         } catch (Exception e) {
-            ExceptionHandler.handleException("Reading JSON from URL", e);
+            ExceptionHandler.handleException("reading json from url", e);
             return null;
         } finally {
             closeInputstream(is);
@@ -232,7 +231,7 @@ public class UpcomingEpisode {
         try {
             is.close();
         } catch (Exception e) {
-            ZLogger.warn("Could not close inputstream!");
+            ExceptionHandler.handleException("closing input stream", e);
         }
     }
 

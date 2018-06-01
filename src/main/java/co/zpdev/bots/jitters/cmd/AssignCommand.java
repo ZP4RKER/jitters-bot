@@ -1,7 +1,7 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.Command;
-import co.zpdev.bots.jitters.util.MessageUtils;
+import co.zpdev.core.discord.command.Command;
+import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -50,7 +50,7 @@ public class AssignCommand {
             }
         }
         
-        MessageUtils.bypassLogs(message);
+        MessageUtil.bypassLogs(message);
     }
 
     private void sendHelp(Message message) {

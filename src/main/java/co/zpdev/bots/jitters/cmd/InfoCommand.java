@@ -1,6 +1,6 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.Command;
+import co.zpdev.core.discord.command.Command;
 import co.zpdev.bots.jitters.Jitters;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;

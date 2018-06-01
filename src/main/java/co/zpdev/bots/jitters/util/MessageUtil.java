@@ -5,19 +5,19 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
 import java.awt.*;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Util class for ease of use for dealing with messages from commands.
  *
- * TODO: Move to core?
- *
  * @author zpdev
  * @version 0.9_BETA
  */
-public class MessageUtils {
+public class MessageUtil {
 
     /**
      * Deletes a bunch of messages silently (no logs).
@@ -76,6 +76,34 @@ public class MessageUtils {
                 .setDescription("You don't have the permissions required to perform this action!")
                 .setColor(new Color(240, 71, 71)).build();
         selfDestuct(15000, message.getChannel().sendMessage(embed).complete(), message);
+    }
+
+    public static String toTimeString(Instant instant) {
+        String endString = "";
+
+        Instant now = Instant.now();
+        long timePast = now.getEpochSecond() - instant.getEpochSecond();
+
+        long days = TimeUnit.SECONDS.toDays(timePast);
+        timePast -= TimeUnit.DAYS.toSeconds(days);
+
+        long hours = TimeUnit.SECONDS.toHours(timePast);
+        timePast -= TimeUnit.HOURS.toSeconds(hours);
+
+        long minutes = TimeUnit.SECONDS.toMinutes(timePast);
+
+        if (days + hours < 1) {
+            timePast -= TimeUnit.MINUTES.toSeconds(minutes);
+            long seconds = timePast;
+            if (minutes > 0) endString = minutes + (minutes == 1 ? " minute" : " minutes") + " and ";
+            endString += seconds + (seconds == 1 ? " second" : " seconds");
+        } else {
+            endString = days + (days == 1 ? " day, " : " days, ");
+            endString += hours + (hours == 1 ? " hour " : " hours ") + "and ";
+            endString += minutes + (minutes == 1 ? " minute" : " minutes");
+        }
+
+        return endString;
     }
 
 }

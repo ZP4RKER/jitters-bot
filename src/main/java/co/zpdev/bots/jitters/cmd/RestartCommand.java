@@ -1,8 +1,8 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.Command;
-import co.zpdev.bots.core.exception.ExceptionHandler;
-import co.zpdev.bots.jitters.util.MessageUtils;
+import co.zpdev.core.discord.command.Command;
+import co.zpdev.core.discord.exception.ExceptionHandler;
+import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.io.InputStream;
@@ -15,7 +15,7 @@ public class RestartCommand {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
         try {
-            MessageUtils.bypassLogs(message);
+            MessageUtil.bypassLogs(message);
 
             InputStream is = Runtime.getRuntime().exec("/home/zp4rker/start-jitters.sh").getInputStream();
             InputStreamReader rd = new InputStreamReader(is);

@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>jitters-bot</name>
+    <name>jitters</name>
 
-    <groupId>me.zp4rker.discord</groupId>
+    <groupId>co.zpdev.bots</groupId>
     <artifactId>jitters</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
 
     <repositories>
         <repository>
@@ -20,9 +20,9 @@
     <dependencies>
         <!-- Core -->
         <dependency>
-            <groupId>co.zpdev.bots</groupId>
-            <artifactId>core</artifactId>
-            <version>1.1.3</version>
+            <groupId>co.zpdev.core</groupId>
+            <artifactId>discord-core</artifactId>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 
@@ -49,14 +49,8 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <minimizeJar>false</minimizeJar>
+                            <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <excludes>
-                                    <!-- Exclude jars -->
-                                    <exclude>org.hamcrest:hamcrest-core</exclude>
-                                </excludes>
-                            </artifactSet>
                         </configuration>
                     </execution>
                 </executions>

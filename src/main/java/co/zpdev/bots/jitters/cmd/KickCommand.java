@@ -1,8 +1,8 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.Command;
+import co.zpdev.core.discord.command.Command;
 import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.util.MessageUtils;
+import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
@@ -22,15 +22,15 @@ public class KickCommand {
     @Command(aliases = "kick")
     public void onCommand(Message message, String[] args) {
         if (!message.getMember().getRoles().contains(Jitters.staff)) {
-            MessageUtils.sendPermError(message);
+            MessageUtil.sendPermError(message);
             return;
         }
         if (args.length < 2) {
-            MessageUtils.sendError("Invalid arguments!", "Usage: `!kick {@user} {reason}`", message);
+            MessageUtil.sendError("Invalid arguments!", "Usage: `!kick {@user} {reason}`", message);
             return;
         }
         if (message.getMentionedUsers().size() < 1) {
-            MessageUtils.sendError("Invalid arguments!", "You didn't mention any one!" +
+            MessageUtil.sendError("Invalid arguments!", "You didn't mention any one!" +
                     "\nUsage: `!kick {@user} {reason}`", message);
             return;
         }
@@ -38,7 +38,7 @@ public class KickCommand {
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
         Member member = message.getGuild().getMember(message.getMentionedUsers().get(0));
 
-        member.getGuild().getController().kick(member, reason).queue(s -> MessageUtils.bypassLogs(message));
+        member.getGuild().getController().kick(member, reason).queue(s -> MessageUtil.bypassLogs(message));
         sendLog(member, message.getAuthor(), reason);
     }
 

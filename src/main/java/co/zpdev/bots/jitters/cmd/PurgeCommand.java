@@ -1,8 +1,8 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.core.command.Command;
+import co.zpdev.core.discord.command.Command;
 import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.util.MessageUtils;
+import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.*;
 
@@ -18,11 +18,11 @@ public class PurgeCommand {
     @Command(aliases = "purge")
     public void onCommand(Message message, String[] args) {
         if (!message.getMember().getRoles().contains(Jitters.staff)) {
-            MessageUtils.sendPermError(message);
+            MessageUtil.sendPermError(message);
             return;
         }
         if (args.length < 1) {
-            MessageUtils.sendError("Invalid arguments!", "Usage: `!purge [user] {#}`", message);
+            MessageUtil.sendError("Invalid arguments!", "Usage: `!purge [user] {#}`", message);
             return;
         }
 
@@ -34,7 +34,7 @@ public class PurgeCommand {
             if (user == null) amount = Integer.parseInt(args[0]);
             else amount = Integer.parseInt(args[1]);
         } catch (Exception e) {
-            MessageUtils.sendError("Invalid Arguments", "You provide valid arguments!" +
+            MessageUtil.sendError("Invalid Arguments", "You provide valid arguments!" +
                     "\nCorrect usage: `sq!purge [user] {#}`", message);
             return;
         }
@@ -91,7 +91,7 @@ public class PurgeCommand {
         MessageEmbed embed = new EmbedBuilder()
                 .setDescription(message.getAuthor().getAsMention() + " just purged " + amount + " messages.")
                 .setColor(Color.ORANGE).build();
-        MessageUtils.selfDestuct(10000, message.getChannel().sendMessage(embed).complete());
+        MessageUtil.selfDestuct(10000, message.getChannel().sendMessage(embed).complete());
     }
 
 }
