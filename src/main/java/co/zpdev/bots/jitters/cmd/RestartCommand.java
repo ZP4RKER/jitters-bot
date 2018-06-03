@@ -10,13 +10,11 @@ import java.io.InputStreamReader;
 
 public class RestartCommand {
 
-    @Command(aliases = "restart")
+    @Command(aliases = "restart", autodelete = true)
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
         try {
-            MessageUtil.bypassLogs(message);
-
             InputStream is = Runtime.getRuntime().exec("/home/zp4rker/start-jitters.sh").getInputStream();
             InputStreamReader rd = new InputStreamReader(is);
             int c; StringBuilder sb = new StringBuilder();
