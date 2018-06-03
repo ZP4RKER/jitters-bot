@@ -4,6 +4,7 @@ import co.zpdev.core.discord.command.Command;
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 
 import java.awt.*;
@@ -15,12 +16,8 @@ public class PurgeCommand {
 
     private int count;
 
-    @Command(aliases = "purge")
+    @Command(aliases = "purge", permission = Permission.MESSAGE_MANAGE)
     public void onCommand(Message message, String[] args) {
-        if (!message.getMember().getRoles().contains(Jitters.staff)) {
-            MessageUtil.sendPermError(message);
-            return;
-        }
         if (args.length < 1) {
             MessageUtil.sendError("Invalid arguments!", "Usage: `!purge [user] {#}`", message);
             return;

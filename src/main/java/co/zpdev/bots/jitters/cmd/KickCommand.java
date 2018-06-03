@@ -4,6 +4,7 @@ import co.zpdev.core.discord.command.Command;
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
@@ -19,12 +20,8 @@ public class KickCommand {
 
     public static List<String> kicked = new ArrayList<>();
 
-    @Command(aliases = "kick")
+    @Command(aliases = "kick", permission = Permission.KICK_MEMBERS)
     public void onCommand(Message message, String[] args) {
-        if (!message.getMember().getRoles().contains(Jitters.staff)) {
-            MessageUtil.sendPermError(message);
-            return;
-        }
         if (args.length < 2) {
             MessageUtil.sendError("Invalid arguments!", "Usage: `!kick {@user} {reason}`", message);
             return;

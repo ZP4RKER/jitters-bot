@@ -65,19 +65,6 @@ public class MessageUtil {
         selfDestuct(15000, message.getChannel().sendMessage(embed).complete(), message);
     }
 
-    /**
-     * Sends a permission error message.
-     *
-     * @param message message which caused the error
-     */
-    public static void sendPermError(Message message) {
-        MessageEmbed embed = new EmbedBuilder()
-                .setTitle("No Permission")
-                .setDescription("You don't have the permissions required to perform this action!")
-                .setColor(new Color(240, 71, 71)).build();
-        selfDestuct(15000, message.getChannel().sendMessage(embed).complete(), message);
-    }
-
     public static String toTimeString(Instant instant) {
         String endString = "";
 

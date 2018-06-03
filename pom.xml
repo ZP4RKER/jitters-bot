@@ -8,7 +8,7 @@
 
     <groupId>co.zpdev.bots</groupId>
     <artifactId>jitters</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.4</version>
 
     <repositories>
         <repository>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>co.zpdev.core</groupId>
             <artifactId>discord-core</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 
@@ -62,6 +62,7 @@
                     <archive>
                         <manifest>
                             <mainClass>co.zpdev.bots.jitters.Jitters</mainClass>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                 </configuration>
@@ -73,7 +74,7 @@
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources</directory>
                 <includes>
-                    <include>*.yml</include>
+                    <include>*.*</include>
                 </includes>
             </resource>
         </resources>

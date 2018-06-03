@@ -16,13 +16,12 @@ import java.util.concurrent.ThreadLocalRandom;
  * The official Discord bot for Jitters.
  *
  * @author zpdev
- * @version v1.2.3
  */
 public class Jitters {
 
     public static JDA jda;
     public static CommandHandler handler;
-    public static final String VERSION = "v1.2.3";
+    public static final String VERSION = Jitters.class.getPackage().getImplementationVersion();
 
     // Staff role
     public static Role staff;
