@@ -17,7 +17,7 @@ public class ReadyListener {
 
         UpcomingEpisode.start();
 
-        event.getJDA().getPresence().setGame(Game.playing(Jitters.VERSION + " | !assign"));
+        event.getJDA().getPresence().setGame(Game.playing("v" + Jitters.VERSION + " | !assign"));
     }
 
     private void registerEventListeners(JDA jda) {
