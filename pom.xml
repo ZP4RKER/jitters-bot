@@ -8,12 +8,12 @@
 
     <groupId>co.zpdev.bots</groupId>
     <artifactId>jitters</artifactId>
-    <version>1.2.6</version>
+    <version>1.2.7</version>
 
     <repositories>
         <repository>
             <id>zpdev</id>
-            <url>https://cdn.rawgit.com/ZP4RKER/maven/master</url>
+            <url>https://cdn.rawgit.com/zpdev/maven/master</url>
         </repository>
     </repositories>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>co.zpdev.core</groupId>
             <artifactId>discord-core</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.8</version>
         </dependency>
     </dependencies>
 
