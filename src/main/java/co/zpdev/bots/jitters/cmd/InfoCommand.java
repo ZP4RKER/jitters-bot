@@ -9,20 +9,19 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 
 public class InfoCommand {
 
-    @Command(aliases = "info")
+    @Command(
+            aliases = "info"
+    )
     public void onCommand(Message message) {
-        message.getChannel().sendMessage(compileEmbed(message.getJDA())).queue();
-    }
+        MessageEmbed embed = new EmbedBuilder()
+        .setAuthor("Jitters Bot", null, message.getJDA().getSelfUser().getEffectiveAvatarUrl())
+        .addField("Author", "ZP4RKER#3333", true)
+        .addField("Version", Jitters.VERSION, true)
+        .addField("Commands", "" + Jitters.handler.getCommands().size(), true)
+        .addField("Description", "The official Jitters bot", true)
+        .build();
 
-    private MessageEmbed compileEmbed(JDA jda) {
-        return new EmbedBuilder()
-                .setAuthor("Jitters Bot", null, jda.getSelfUser().getEffectiveAvatarUrl())
-                .addField("Author", "ZP4RKER#3333", true)
-                .addField("Version", Jitters.VERSION, true)
-                .addField("Commands", "" + Jitters.handler.getCommands().size(), true)
-                .addField("Description", "Lorem ipsum.", true)
-                .build();
+        message.getChannel().sendMessage(embed).queue();
     }
-
 
 }

@@ -10,7 +10,7 @@ import net.dv8tion.jda.core.hooks.SubscribeEvent;
 import java.awt.*;
 import java.time.Instant;
 
-public class RoleListener {
+public class RoleLog {
 
     @SubscribeEvent
     public void onRoleAdd(GuildMemberRoleAddEvent event) {

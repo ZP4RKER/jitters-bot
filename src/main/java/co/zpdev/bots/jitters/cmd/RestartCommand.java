@@ -2,7 +2,6 @@ package co.zpdev.bots.jitters.cmd;
 
 import co.zpdev.core.discord.command.Command;
 import co.zpdev.core.discord.exception.ExceptionHandler;
-import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.io.InputStream;
@@ -10,7 +9,10 @@ import java.io.InputStreamReader;
 
 public class RestartCommand {
 
-    @Command(aliases = "restart", autodelete = true)
+    @Command(
+            aliases = "restart",
+            autodelete = true
+    )
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 

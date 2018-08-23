@@ -1,28 +1,17 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.core.discord.command.Command;
-import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.util.MessageUtil;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-
-import java.awt.*;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
+//TODO: Rewrite class
 public class PurgeCommand {
 
-    private int count;
+    /*private int count;
 
-    @Command(aliases = "purge", permission = Permission.MESSAGE_MANAGE)
+    @Command(
+            aliases = "purge",
+            usage = "!purge {@user} {#}",
+            permission = Permission.MESSAGE_MANAGE,
+            minArgs = 1
+    )
     public void onCommand(Message message, String[] args) {
-        if (args.length < 1) {
-            MessageUtil.sendError("Invalid arguments!", "Usage: `!purge [user] {#}`", message);
-            return;
-        }
-
         User user = null;
         if (message.getMentionedUsers().size() == 1) user = message.getMentionedUsers().get(0);
 
@@ -88,7 +77,12 @@ public class PurgeCommand {
         MessageEmbed embed = new EmbedBuilder()
                 .setDescription(message.getAuthor().getAsMention() + " just purged " + amount + " messages.")
                 .setColor(Color.ORANGE).build();
-        MessageUtil.selfDestuct(10000, message.getChannel().sendMessage(embed).complete());
-    }
+        message.getChannel().sendMessage(embed).queue(m -> new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                m.delete().complete();
+            }
+        }, 10000));
+    }*/
 
 }

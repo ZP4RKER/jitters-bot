@@ -1,7 +1,6 @@
 package co.zpdev.bots.jitters.cmd;
 
 import co.zpdev.core.discord.command.Command;
-import co.zpdev.bots.jitters.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
@@ -13,29 +12,40 @@ import java.util.TimerTask;
 
 public class AssignCommand {
 
-    @Command(aliases = "assign")
+    @Command(
+            aliases = "assign"
+    )
     public void onCommand(Message message, String[] args) {
         if (args.length < 1) {
             sendHelp(message);
         } else {
             String role = String.join("", args);
-            switch (role.toUpperCase()) {
-                case "THEFLASH":
-                case "FLASH":
+            switch (role.toLowerCase()) {
+                case "theflash":
+                case "flash":
                     role = "312572739808526336";
                     break;
-                case "ARROW":
+                case "arrow":
                     role = "312572948856832000";
                     break;
-                case "LEGENDSOFTOMORROW":
-                case "LEGENDS":
+                case "legendsoftomorrow":
+                case "legends":
                     role = "312573020244017153";
                     break;
-                case "SUPERGIRL":
+                case "supergirl":
                     role = "312573207632936972";
                     break;
-                case "BLACKLIGHTNING":
+                case "blacklightning":
                     role = "404616536133861377";
+                    break;
+                case "krypton":
+                    role = "478839012002496512";
+                    break;
+                case "gotham":
+                    role = "478839228747481098";
+                    break;
+                case "young justice":
+                    role = "478839334288621578";
                     break;
                 default: role = null;
             }
@@ -50,12 +60,23 @@ public class AssignCommand {
             }
         }
         
-        MessageUtil.bypassLogs(message);
+        message.delete().complete();
     }
 
     private void sendHelp(Message message) {
+        String[] roles = {
+                "The Flash",
+                "Arrow",
+                "Legends of Tomorrow",
+                "Supergirl",
+                "Black Lightning",
+                "Krypton",
+                "Gotham",
+                "Young Justice"
+        };
+
         message.getTextChannel().sendMessage(new EmbedBuilder()
-                .setDescription("**Roles:**\n- The Flash\n- Arrow\n- Legends of Tomorrow\n- Supergirl\n- Black Lightning\n\n" +
+                .setDescription("**Roles:**\n- " + String.join("\n- ", roles) + "\n\n" +
                         "**Usage:**\n`!assign <role>`")
                 .setColor(Color.decode("#34c6f2")).build()).queue();
     }

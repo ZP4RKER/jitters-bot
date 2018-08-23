@@ -8,7 +8,10 @@ import net.dv8tion.jda.core.entities.Message;
  */
 public class KillCommand {
 
-    @Command(aliases = "kill", autodelete = true)
+    @Command(
+            aliases = "kill",
+            autodelete = true
+    )
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 

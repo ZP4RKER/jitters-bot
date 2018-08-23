@@ -20,7 +20,7 @@ import java.util.TimerTask;
  *
  * @author zpdev
  */
-public class SpamListener {
+public class SpamLog {
 
     @SubscribeEvent
     public void onMessage(GuildMessageReceivedEvent event) {
@@ -37,7 +37,7 @@ public class SpamListener {
     }
 
     private void removeInvite(Message message) {
-        TextChannel logs = Jitters.jda.getTextChannelById(314654582183821312L);
+        TextChannel logs = message.getJDA().getTextChannelById(314654582183821312L);
 
         message.delete().queue();
         String username = message.getAuthor().getName() + "#" + message.getAuthor().getDiscriminator();
@@ -60,7 +60,7 @@ public class SpamListener {
     }
 
     private void removeSpam(Message message) {
-        TextChannel logs = Jitters.jda.getTextChannelById(314654582183821312L);
+        TextChannel logs = message.getJDA().getTextChannelById(314654582183821312L);
 
         message.delete().queue();
         String username = message.getAuthor().getName() + "#" + message.getAuthor().getDiscriminator();
