@@ -2,6 +2,7 @@ package co.zpdev.bots.jitters.util;
 
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.core.discord.exception.ExceptionHandler;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,13 +32,13 @@ public class UpcomingEpisode {
     private static TextChannel flash, arrow, supergirl, legends, blightning;
     private static JSONObject flashData, arrowData, supergirlData, legendsData, blightningData;
 
-    public static void start() {
+    public static void start(JDA jda) {
         // Initialisation
-        flash = Jitters.jda.getTextChannelById(312574911199576064L);
-        arrow = Jitters.jda.getTextChannelById(312574944137707530L);
-        supergirl = Jitters.jda.getTextChannelById(312575189877653504L);
-        legends = Jitters.jda.getTextChannelById(312574974005346304L);
-        blightning = Jitters.jda.getTextChannelById(404630625904230400L);
+        flash = jda.getTextChannelById(312574911199576064L);
+        arrow = jda.getTextChannelById(312574944137707530L);
+        supergirl = jda.getTextChannelById(312575189877653504L);
+        legends = jda.getTextChannelById(312574974005346304L);
+        blightning = jda.getTextChannelById(404630625904230400L);
 
         flashData = null;
         arrowData = null;
