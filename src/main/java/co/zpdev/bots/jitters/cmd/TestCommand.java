@@ -17,9 +17,9 @@ public class TestCommand {
             aliases = "test",
             autodelete = true
     )
-    public void onCommand(Message message) {
+    public void onCommand(Message message, String[] args) {
         try {
-            Process p = Runtime.getRuntime().exec("ls ~");
+            Process p = Runtime.getRuntime().exec("ls " + args[0]);
             InputStreamReader rd = new InputStreamReader(p.getInputStream());
             int c; StringBuilder sb = new StringBuilder();
 
