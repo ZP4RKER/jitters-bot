@@ -19,7 +19,7 @@ public class TestCommand {
     )
     public void onCommand(Message message) {
         try {
-            Process p = Runtime.getRuntime().exec("ls ~/.ssh/authorized_keys");
+            Process p = Runtime.getRuntime().exec("ls");
             InputStreamReader rd = new InputStreamReader(p.getInputStream());
             int c; StringBuilder sb = new StringBuilder();
 
