@@ -19,7 +19,7 @@ public class TestCommand {
     )
     public void onCommand(Message message) {
         try {
-            Process p = Runtime.getRuntime().exec("ls");
+            Process p = Runtime.getRuntime().exec("ls target");
             InputStreamReader rd = new InputStreamReader(p.getInputStream());
             int c; StringBuilder sb = new StringBuilder();
 
