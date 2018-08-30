@@ -27,8 +27,6 @@ public class TestCommand {
             rd.close();
 
             PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
-            pc.sendMessage("executed").complete();
-            pc.sendMessage("is alive: " + p.isAlive()).complete();
             pc.sendMessage(sb.toString()).complete();
         } catch (IOException e) {
             ExceptionHandler.handleException("test command", e);
