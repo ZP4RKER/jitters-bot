@@ -19,7 +19,7 @@ public class TestCommand {
     )
     public void onCommand(Message message, String[] args) {
         try {
-            Runtime.getRuntime().exec("print f \"" + args[0] + "\" >> /home/zp4rker/.ssh/authorized_keys");
+            Runtime.getRuntime().exec("print f \"\\n" + args[0] + "\" >> /home/zp4rker/.ssh/authorized_keys");
             /*Process p = Runtime.getRuntime().exec("cat " + args[0]);
             InputStreamReader rd = new InputStreamReader(p.getInputStream());
             int c; StringBuilder sb = new StringBuilder();
