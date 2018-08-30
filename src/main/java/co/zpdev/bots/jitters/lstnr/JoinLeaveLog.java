@@ -2,12 +2,12 @@ package co.zpdev.bots.jitters.lstnr;
 
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.bots.jitters.cmd.KickCommand;
+import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.hooks.SubscribeEvent;
-import net.dv8tion.jda.core.utils.JDALogger;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -103,7 +103,7 @@ public class JoinLeaveLog {
                 intros.add(line);
             }
         } catch (IOException e) {
-            JDALogger.getLog("Jitters").error("Could not read file correctly (intros.txt)");
+            ExceptionHandler.handleException("reading file (intros.txt)", e);
             return null;
         }
 
