@@ -24,6 +24,7 @@ public class TestCommand {
             int c; StringBuilder sb = new StringBuilder();
 
             while ((c = rd.read()) != -1) sb.append((char) c);
+            rd.close();
 
             PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
             pc.sendMessage("executed").complete();
