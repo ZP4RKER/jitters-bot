@@ -33,6 +33,7 @@ public class TestCommand {
         InputStream in = Jitters.class.getResourceAsStream("intros.txt");
         int c; StringBuilder sb = new StringBuilder();
 
+        pc.sendMessage("start?").complete();
         try {
             while ((c = in.read()) != -1) sb.append((char) c);
 
@@ -42,6 +43,7 @@ public class TestCommand {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
+        pc.sendMessage("done?").complete();
 
         pc.sendMessage(intro).complete();
     }
