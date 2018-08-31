@@ -40,7 +40,7 @@ public class TestCommand {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
-        message.getAuthor().openPrivateChannel().complete().sendMessage(intro == null ? "null" : intro).complete();
+        message.getAuthor().openPrivateChannel().complete().sendMessage(intro == null ? "null" : "not null").complete();
     }
 
 }
