@@ -5,6 +5,7 @@ import co.zpdev.bots.jitters.lstnr.JoinLeaveLog;
 import co.zpdev.core.discord.command.Command;
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +41,9 @@ public class TestCommand {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
-        message.getAuthor().openPrivateChannel().complete().sendMessage(intro == null ? "null" : "not null").complete();
+        PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
+        pc.sendMessage("sending result").complete();
+        pc.sendMessage(intro == null ? "null" : "not null").complete();
     }
 
 }
