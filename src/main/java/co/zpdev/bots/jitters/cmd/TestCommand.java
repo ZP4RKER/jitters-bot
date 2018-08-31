@@ -32,12 +32,14 @@ public class TestCommand {
         String line; List<String> intros = new ArrayList<>();
 
         try {
+            pc.sendMessage("#1").complete();
             while ((line = rd.readLine()) != null) {
+                pc.sendMessage("read line").complete();
                 if (line.startsWith("//")) continue;
                 intros.add(line);
+                pc.sendMessage("added line").complete();
             }
             rd.close();
-            pc.sendMessage("#1").complete();
 
             int rand = ThreadLocalRandom.current().nextInt(0, intros.size());
             intro =  intros.get(rand).replace("%user%", message.getAuthor().getAsMention());
