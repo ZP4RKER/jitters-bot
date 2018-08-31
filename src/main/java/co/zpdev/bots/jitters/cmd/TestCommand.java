@@ -24,6 +24,9 @@ public class TestCommand {
             autodelete = true
     )
     public void onCommand(Message message) {
+        PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
+
+        pc.sendMessage("start").complete();
         String intro;
         BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
         String line; List<String> intros = new ArrayList<>();
@@ -34,16 +37,15 @@ public class TestCommand {
                 intros.add(line);
             }
             rd.close();
+            pc.sendMessage("#1").complete();
 
             int rand = ThreadLocalRandom.current().nextInt(0, intros.size());
             intro =  intros.get(rand).replace("%user%", message.getAuthor().getAsMention());
         } catch (IOException e) {
+            pc.sendMessage("exception").complete();
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
-        PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
-        pc.sendMessage("sending result").complete();
-        pc.sendMessage(intro == null ? "null" : "not null").complete();
     }
 
 }
