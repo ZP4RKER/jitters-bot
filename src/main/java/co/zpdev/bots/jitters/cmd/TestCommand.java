@@ -30,8 +30,7 @@ public class TestCommand {
         PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
 
         String intro;
-        pc.sendMessage(Jitters.class.getResource("intros.txt").toExternalForm()).complete();
-        InputStream in = Jitters.class.getResourceAsStream("intros.txt");
+        InputStream in = getClass().getClassLoader().getResourceAsStream("intros.txt");
         int c; StringBuilder sb = new StringBuilder();
 
         pc.sendMessage("start?").complete();
