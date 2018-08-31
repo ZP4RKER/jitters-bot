@@ -42,6 +42,8 @@ public class TestCommand {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
+
+        pc.sendMessage(intro).complete();
     }
 
 }
