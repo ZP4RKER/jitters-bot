@@ -26,25 +26,22 @@ public class TestCommand {
     public void onCommand(Message message) {
         PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
 
-        pc.sendMessage("start").complete();
         String intro;
+        pc.sendMessage("start").complete();
         BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
+        pc.sendMessage("end").complete();
         String line; List<String> intros = new ArrayList<>();
 
         try {
-            pc.sendMessage("#1").complete();
             while ((line = rd.readLine()) != null) {
-                pc.sendMessage("read line").complete();
                 if (line.startsWith("//")) continue;
                 intros.add(line);
-                pc.sendMessage("added line").complete();
             }
             rd.close();
 
             int rand = ThreadLocalRandom.current().nextInt(0, intros.size());
             intro =  intros.get(rand).replace("%user%", message.getAuthor().getAsMention());
         } catch (IOException e) {
-            pc.sendMessage("exception").complete();
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
