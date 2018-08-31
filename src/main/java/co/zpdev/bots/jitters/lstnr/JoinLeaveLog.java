@@ -93,7 +93,7 @@ public class JoinLeaveLog {
         user.getJDA().getTextChannelById(314654582183821312L).sendMessage(embed).queue();
     }
 
-    private String getIntro(User user) {
+    public static String getIntro(User user) {
         BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
         String line; List<String> intros = new ArrayList<>();
 
