@@ -28,7 +28,7 @@ public class TestCommand {
 
         String intro;
         pc.sendMessage("start").complete();
-        Jitters.class.getResourceAsStream("intros.txt");
+        new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt"));
         pc.sendMessage("end").complete();
         BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
         pc.sendMessage("end").complete();
