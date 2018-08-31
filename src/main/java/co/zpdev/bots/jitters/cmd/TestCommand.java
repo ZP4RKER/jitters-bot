@@ -9,10 +9,13 @@ import net.dv8tion.jda.core.entities.PrivateChannel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 /**
  * @author ZP4RKER
@@ -27,22 +30,14 @@ public class TestCommand {
         PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
 
         String intro;
-        pc.sendMessage("start").complete();
-        new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt"));
-        pc.sendMessage("end").complete();
-        BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
-        pc.sendMessage("end").complete();
-        String line; List<String> intros = new ArrayList<>();
+        InputStream in = Jitters.class.getResourceAsStream("intros.txt");
+        int c; StringBuilder sb = new StringBuilder();
 
         try {
-            while ((line = rd.readLine()) != null) {
-                if (line.startsWith("//")) continue;
-                intros.add(line);
-            }
-            rd.close();
+            while ((c = in.read()) != -1) sb.append((char) c);
 
-            int rand = ThreadLocalRandom.current().nextInt(0, intros.size());
-            intro =  intros.get(rand).replace("%user%", message.getAuthor().getAsMention());
+            int rand = ThreadLocalRandom.current().nextInt(0, sb.toString().split("\n").length);
+            intro =  Arrays.stream(sb.toString().split("\n")).filter(s -> !s.startsWith("//")).collect(Collectors.toList()).get(rand).replace("%user%", message.getAuthor().getAsMention());
         } catch (IOException e) {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
