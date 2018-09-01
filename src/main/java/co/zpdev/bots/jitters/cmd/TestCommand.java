@@ -25,7 +25,7 @@ public class TestCommand {
         pc.getHistory().retrievePast(100).complete().forEach(m -> m.delete().queue());
 
         String intro;
-        InputStream in = getClass().getClassLoader().getResourceAsStream("intros.txt");
+        InputStream in = getClass().getClassLoader().getResourceAsStream("/intros.txt");
         int c; StringBuilder sb = new StringBuilder();
 
         try {
