@@ -1,19 +1,13 @@
 package co.zpdev.bots.jitters.cmd;
 
-import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.lstnr.JoinLeaveLog;
 import co.zpdev.core.discord.command.Command;
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -28,12 +22,12 @@ public class TestCommand {
     )
     public void onCommand(Message message) {
         PrivateChannel pc = message.getAuthor().openPrivateChannel().complete();
+        pc.getHistory().retrievePast(100).complete().forEach(m -> m.delete().queue());
 
         String intro;
         InputStream in = getClass().getClassLoader().getResourceAsStream("intros.txt");
         int c; StringBuilder sb = new StringBuilder();
 
-        pc.sendMessage("start?").complete();
         try {
             while ((c = in.read()) != -1) sb.append((char) c);
 
@@ -43,7 +37,6 @@ public class TestCommand {
             ExceptionHandler.handleException("reading file (intros.txt)", e);
             intro =  null;
         }
-        pc.sendMessage("done?").complete();
 
         pc.sendMessage(intro).complete();
     }
