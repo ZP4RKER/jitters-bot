@@ -1,5 +1,6 @@
 package co.zpdev.bots.jitters.cmd;
 
+import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.core.discord.command.Command;
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.Message;
@@ -25,7 +26,7 @@ public class TestCommand {
         pc.getHistory().retrievePast(100).complete().forEach(m -> m.delete().queue());
 
         String intro;
-        InputStream in = getClass().getClassLoader().getResourceAsStream("/intros.txt");
+        InputStream in = Jitters.class.getResourceAsStream("/intros.txt");
         int c; StringBuilder sb = new StringBuilder();
 
         try {
