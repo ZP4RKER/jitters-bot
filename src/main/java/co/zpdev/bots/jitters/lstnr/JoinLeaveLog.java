@@ -94,7 +94,7 @@ public class JoinLeaveLog {
     }
 
     private String getIntro(User user) {
-        BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("intros.txt")));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(Jitters.class.getResourceAsStream("/intros.txt")));
         String line; List<String> intros = new ArrayList<>();
 
         try {

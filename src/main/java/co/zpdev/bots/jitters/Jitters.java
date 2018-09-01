@@ -9,11 +9,9 @@ import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
 import javax.security.auth.login.LoginException;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The official Discord bot for Jitters.
