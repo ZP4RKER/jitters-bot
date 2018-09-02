@@ -135,7 +135,7 @@ public class ShowUpdater {
             nextEp.put("name", eData.getString("name"));
             nextEp.put("number", eData.getNumber("season") + "x" + eData.getNumber("number"));
             nextEp.put("airtime", getInstant(eData).getEpochSecond());
-            if (eData.get("summary") != null) nextEp.put("summary", eData.getString("summary"));
+            if (!eData.isNull("summary")) nextEp.put("summary", eData.getString("summary"));
             data.put("nextepisode", nextEp);
         }
 
