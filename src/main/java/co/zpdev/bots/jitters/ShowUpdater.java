@@ -133,7 +133,7 @@ public class ShowUpdater {
             System.out.println(eData.toString());
             JSONObject nextEp = new JSONObject();
             nextEp.put("name", eData.getString("name"));
-            nextEp.put("number", eData.getString("season") + "x" + eData.getString("number"));
+            nextEp.put("number", eData.getNumber("season") + "x" + eData.getNumber("number"));
             nextEp.put("airtime", getInstant(eData).getEpochSecond());
             nextEp.put("summary", eData.getString("summary"));
             data.put("nextepisode", nextEp);
