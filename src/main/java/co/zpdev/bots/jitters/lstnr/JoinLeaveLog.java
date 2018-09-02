@@ -3,6 +3,7 @@ package co.zpdev.bots.jitters.lstnr;
 import co.zpdev.bots.jitters.Jitters;
 import co.zpdev.bots.jitters.cmd.KickCommand;
 import co.zpdev.core.discord.exception.ExceptionHandler;
+import co.zpdev.core.discord.util.TimeUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
@@ -56,7 +57,7 @@ public class JoinLeaveLog {
                 .setAuthor(username, null, user.getEffectiveAvatarUrl())
                 .setThumbnail(avatarUrl)
                 .setDescription(user.getAsMention() + " joined the server." +
-                        "\nAccount created " + toTimeString(creation) + " ago.")
+                        "\nAccount created " + TimeUtil.toString(creation, true) + " ago.")
                 .setColor(new Color(67, 181, 129))
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
@@ -86,7 +87,7 @@ public class JoinLeaveLog {
                 .setAuthor(username, null, user.getEffectiveAvatarUrl())
                 .setThumbnail(avatarUrl)
                 .setDescription(user.getAsMention() + " left the server." +
-                        "\nUser joined " + toTimeString(joined) + " ago.")
+                        "\nUser joined " + TimeUtil.toString(joined, true) + " ago.")
                 .setColor(new Color(240, 71, 71))
                 .setFooter("USERID: " + id, null)
                 .setTimestamp(Instant.now()).build();
@@ -109,34 +110,6 @@ public class JoinLeaveLog {
 
         int rand = ThreadLocalRandom.current().nextInt(0, intros.size());
         return intros.get(rand).replace("%user%", user.getAsMention());
-    }
-
-    private String toTimeString(Instant instant) {
-        String endString = "";
-
-        Instant now = Instant.now();
-        long timePast = now.getEpochSecond() - instant.getEpochSecond();
-
-        long days = TimeUnit.SECONDS.toDays(timePast);
-        timePast -= TimeUnit.DAYS.toSeconds(days);
-
-        long hours = TimeUnit.SECONDS.toHours(timePast);
-        timePast -= TimeUnit.HOURS.toSeconds(hours);
-
-        long minutes = TimeUnit.SECONDS.toMinutes(timePast);
-
-        if (days + hours < 1) {
-            timePast -= TimeUnit.MINUTES.toSeconds(minutes);
-            long seconds = timePast;
-            if (minutes > 0) endString = minutes + (minutes == 1 ? " minute" : " minutes") + " and ";
-            endString += seconds + (seconds == 1 ? " second" : " seconds");
-        } else {
-            endString = days + (days == 1 ? " day, " : " days, ");
-            endString += hours + (hours == 1 ? " hour " : " hours ") + "and ";
-            endString += minutes + (minutes == 1 ? " minute" : " minutes");
-        }
-
-        return endString;
     }
 
 }

@@ -7,6 +7,7 @@ import co.zpdev.bots.jitters.lstnr.SpamLog;
 import co.zpdev.core.discord.command.CommandHandler;
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
@@ -29,7 +30,7 @@ public class Jitters {
 
         handler = new CommandHandler("!", "co.zpdev.bots.jitters.cmd");
 
-        new JDABuilder(AccountType.BOT)
+        JDA jda = new JDABuilder(AccountType.BOT)
         .setToken(args[0])
 
         .setGame(Game.playing("v" + VERSION + " | !assign"))
@@ -38,12 +39,15 @@ public class Jitters {
 
         .addEventListener(handler)
 
-        .addEventListener(new ReadyListener())
+//        .addEventListener(new ReadyListener())
         .addEventListener(new JoinLeaveLog())
         .addEventListener(new RoleLog())
         .addEventListener(new SpamLog())
 
         .build();
+
+        ShowUpdater updater = new ShowUpdater(jda);
+        updater.start();
     }
 
 }
