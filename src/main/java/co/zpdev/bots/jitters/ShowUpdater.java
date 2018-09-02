@@ -130,12 +130,12 @@ public class ShowUpdater {
 
         if (sData.getJSONObject("_links").has("nextepisode")) {
             JSONObject eData = JSONUtil.fromUrl(sData.getJSONObject("_links").getJSONObject("nextepisode").getString("href"));
-            System.out.println(eData.toString());
+
             JSONObject nextEp = new JSONObject();
             nextEp.put("name", eData.getString("name"));
             nextEp.put("number", eData.getNumber("season") + "x" + eData.getNumber("number"));
             nextEp.put("airtime", getInstant(eData).getEpochSecond());
-            nextEp.put("summary", eData.getString("summary"));
+            if (eData.has("summary")) nextEp.put("summary", eData.getString("summary"));
             data.put("nextepisode", nextEp);
         }
 
