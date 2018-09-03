@@ -122,6 +122,7 @@ public class ShowUpdater {
         data.put("channel", shows.getJSONObject(show).getLong("channel"));
         data.put("colour", shows.getJSONObject(show).getString("colour"));
 
+        System.out.println(show);
         JSONObject sData = JSONUtil.fromUrl("http://api.tvmaze.com/shows/" + data.getString("id"));
 
         data.put("name", sData.getString("name"));
@@ -130,7 +131,7 @@ public class ShowUpdater {
 
         if (sData.getJSONObject("_links").has("nextepisode")) {
             JSONObject eData = JSONUtil.fromUrl(sData.getJSONObject("_links").getJSONObject("nextepisode").getString("href"));
-            System.out.println(show);
+
             JSONObject nextEp = new JSONObject();
             nextEp.put("name", eData.getString("name"));
             nextEp.put("number", eData.getNumber("season") + "x" + eData.getNumber("number"));
