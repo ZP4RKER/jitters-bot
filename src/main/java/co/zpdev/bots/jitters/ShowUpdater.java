@@ -113,7 +113,9 @@ public class ShowUpdater {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
         }
 
-        c.sendMessage(embed.build()).queue();
+        System.out.println("Instant.now().getEpochSecond() = " + Instant.now().getEpochSecond());
+        System.out.println("nextEp.getLong(\"airtime\") = " + nextEp.getLong("airtime"));
+        //c.sendMessage(embed.build()).queue();
     }
 
     private void update(String show) {
