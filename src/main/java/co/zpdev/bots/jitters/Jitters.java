@@ -1,7 +1,6 @@
 package co.zpdev.bots.jitters;
 
 import co.zpdev.bots.jitters.lstnr.JoinLeaveLog;
-import co.zpdev.bots.jitters.lstnr.ReadyListener;
 import co.zpdev.bots.jitters.lstnr.RoleLog;
 import co.zpdev.bots.jitters.lstnr.SpamLog;
 import co.zpdev.core.discord.command.CommandHandler;
@@ -39,7 +38,6 @@ public class Jitters {
 
         .addEventListener(handler)
 
-//        .addEventListener(new ReadyListener())
         .addEventListener(new JoinLeaveLog())
         .addEventListener(new RoleLog())
         .addEventListener(new SpamLog())
