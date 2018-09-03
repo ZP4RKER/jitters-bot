@@ -107,7 +107,7 @@ public class ShowUpdater {
         .setFooter(data.getString("name") + " - " + nextEp.getString("number"), null)
         .setImage(data.getString("image"));
 
-        if (Instant.now().getEpochSecond() > data.getLong("airtime")) {
+        if (Instant.now().getEpochSecond() > nextEp.getLong("airtime")) {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts in 5 minutes");
         } else {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
