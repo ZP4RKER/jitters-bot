@@ -9,8 +9,9 @@ import net.dv8tion.jda.core.entities.Role;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-public class AssignCommand {
+public class Assign {
 
     @Command(
             aliases = "assign"
@@ -84,19 +85,19 @@ public class AssignCommand {
     private void sendConfirmation(Message message, Role role) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":white_check_mark: You have assigned the `" + role.getName() + "` role to yourself!")
-                .setColor(role.getColor()).build()).complete(), 7000);
+                .setColor(role.getColor()).build()).complete(), TimeUnit.SECONDS.toMillis(10));
     }
 
     private void sendError(Message message) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":x: That role doesn't exist or can't be self-assigned!")
-                .setColor(Color.RED).build()).complete(), 6000);
+                .setColor(Color.RED).build()).complete(), TimeUnit.SECONDS.toMillis(10));
     }
 
     private void sendWarning(Message message) {
         selfDestruct(message.getTextChannel().sendMessage(new EmbedBuilder()
                 .setDescription(":warning: You already have that role!")
-                .setColor(Color.YELLOW).build()).complete(), 6000);
+                .setColor(Color.YELLOW).build()).complete(), TimeUnit.SECONDS.toMillis(10));
     }
 
     private void selfDestruct(Message message, long delay) {

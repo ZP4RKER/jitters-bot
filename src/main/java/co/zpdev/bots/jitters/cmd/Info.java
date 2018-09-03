@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
-public class InfoCommand {
+public class Info {
 
     @Command(
             aliases = "info"

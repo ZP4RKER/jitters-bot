@@ -145,7 +145,7 @@ public class ShowUpdater {
 
     private Instant getInstant(JSONObject eData) {
         int[] d = Arrays.stream(eData.getString("airdate").split("-")).mapToInt(Integer::parseInt).toArray();
-        int[] t = eData.getString("airtime").isEmpty() ? new int[]{0, 0} : Arrays.stream(eData.getString("airtime").split(":")).mapToInt(Integer::parseInt).toArray();
+        int[] t = eData.getString("airtime").isEmpty() || !eData.has("airtime") ? new int[]{0, 0} : Arrays.stream(eData.getString("airtime").split(":")).mapToInt(Integer::parseInt).toArray();
 
         return ZonedDateTime.of(LocalDateTime.of(d[0], d[1], d[2], t[0], t[1]), ZoneId.of("America/New_York")).toInstant();
     }

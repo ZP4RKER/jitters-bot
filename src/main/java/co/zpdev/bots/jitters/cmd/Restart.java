@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.entities.Message;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class RestartCommand {
+public class Restart {
 
     @Command(
             aliases = "restart",

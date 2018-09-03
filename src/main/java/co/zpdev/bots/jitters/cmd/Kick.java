@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class KickCommand {
+public class Kick {
 
     public static List<String> kicked = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class KickCommand {
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
-        KickCommand.kicked.add(user.getId());
+        Kick.kicked.add(user.getId());
         kicked.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).complete();
     }
 

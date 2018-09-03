@@ -12,6 +12,7 @@ import java.awt.*;
 import java.time.Instant;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Detects and handles spam/invite links.
@@ -55,7 +56,7 @@ public class SpamLog {
                     public void run() {
                         m.delete().queue();
                     }
-                }, 15000)
+                }, TimeUnit.SECONDS.toMillis(15))
         );
     }
 
@@ -78,7 +79,7 @@ public class SpamLog {
                     public void run() {
                         m.delete().queue();
                     }
-                }, 15000)
+                }, TimeUnit.SECONDS.toMillis(15))
         );
     }
 

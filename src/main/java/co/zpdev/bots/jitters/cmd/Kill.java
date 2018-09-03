@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.entities.Message;
 /**
  * @author ZP4RKER
  */
-public class KillCommand {
+public class Kill {
 
     @Command(
             aliases = "kill",

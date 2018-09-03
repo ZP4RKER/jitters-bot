@@ -1,7 +1,7 @@
 package co.zpdev.bots.jitters.lstnr;
 
 import co.zpdev.bots.jitters.Jitters;
-import co.zpdev.bots.jitters.cmd.KickCommand;
+import co.zpdev.bots.jitters.cmd.Kick;
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import co.zpdev.core.discord.util.TimeUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -73,8 +73,8 @@ public class JoinLeaveLog {
             joinMessages.get(id).delete().queue(m -> joinMessages.remove(id));
         }
 
-        if (KickCommand.kicked.contains(id)) {
-            KickCommand.kicked.remove(id);
+        if (Kick.kicked.contains(id)) {
+            Kick.kicked.remove(id);
             return;
         }
 

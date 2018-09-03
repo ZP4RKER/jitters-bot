@@ -12,7 +12,7 @@ import java.awt.*;
 import java.time.Instant;
 import java.util.Arrays;
 
-public class BanCommand {
+public class Ban {
 
     @Command(
             aliases = "ban",
@@ -41,7 +41,7 @@ public class BanCommand {
                 .setFooter("USERID: " + user.getId(), null)
                 .setTimestamp(Instant.now()).build();
 
-        KickCommand.kicked.add(user.getId());
+        Kick.kicked.add(user.getId());
         banned.getGuild().getTextChannelById(314654582183821312L).sendMessage(embed).complete();
     }
 
