@@ -95,6 +95,7 @@ public class ShowUpdater {
 
     private void announce(String show) {
         if (!shows.getJSONObject(show).has("nextepisode")) return;
+        if (!shows.getJSONObject(show).getJSONObject("nextepisode").has("airtime")) return;
 
         JSONObject data = shows.getJSONObject(show);
         JSONObject nextEp = data.getJSONObject("nextepisode");
