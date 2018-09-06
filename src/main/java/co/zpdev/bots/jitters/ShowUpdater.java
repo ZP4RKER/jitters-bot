@@ -113,8 +113,10 @@ public class ShowUpdater {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
         }
 
+        System.out.println("nextEp.getString(\"name\") = " + nextEp.getString("name"));
         System.out.println("Instant.now().getEpochSecond() = " + Instant.now().getEpochSecond());
         System.out.println("nextEp.getLong(\"airtime\") = " + nextEp.getLong("airtime"));
+        System.out.println();
         //c.sendMessage(embed.build()).queue();
     }
 
@@ -149,6 +151,11 @@ public class ShowUpdater {
     private Instant getInstant(JSONObject eData) {
         int[] d = Arrays.stream(eData.getString("airdate").split("-")).mapToInt(Integer::parseInt).toArray();
         int[] t = eData.getString("airtime").isEmpty() || !eData.has("airtime") ? new int[]{0, 0} : Arrays.stream(eData.getString("airtime").split(":")).mapToInt(Integer::parseInt).toArray();
+
+        System.out.println("eData.getString(\"name\") = " + eData.getString("name"));
+        System.out.println(Arrays.toString(d));
+        System.out.println(Arrays.toString(t));
+        System.out.println();
 
         return ZonedDateTime.of(LocalDateTime.of(d[0], d[1], d[2], t[0], t[1]), ZoneId.of("America/New_York")).toInstant();
     }
