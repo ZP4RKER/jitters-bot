@@ -45,7 +45,7 @@ public class Assign {
                 case "gotham":
                     role = "478839228747481098";
                     break;
-                case "young justice":
+                case "youngjustice":
                     role = "478839334288621578";
                     break;
                 default: role = null;
