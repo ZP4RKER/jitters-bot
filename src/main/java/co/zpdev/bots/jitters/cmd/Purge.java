@@ -24,7 +24,7 @@ public class Purge {
     public void onCommand(Message message, String[] args) {
         int amount;
         try {
-            amount = Integer.parseInt(args[0]);
+            amount = Integer.parseInt(args[0]) + 1;
         } catch (NumberFormatException e) {
             error(message);
             return;
@@ -55,7 +55,7 @@ public class Purge {
             count += messages.size();
         }
 
-        if (count > 0) success(message, count);
+        if (count > 0) success(message, count - 1);
     }
 
     private void success(Message message, int count) {
