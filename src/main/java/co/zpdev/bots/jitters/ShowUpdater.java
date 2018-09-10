@@ -114,7 +114,7 @@ class ShowUpdater {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
         }
 
-        PostUtil.push("Tried announcing", PostUtil.paste(nextEp.toString(2)));
+        PostUtil.push("Tried announcing", PostUtil.paste("nextEp = " + nextEp.toString(2)));
         //c.sendMessage(embed.build()).queue();
     }
 
