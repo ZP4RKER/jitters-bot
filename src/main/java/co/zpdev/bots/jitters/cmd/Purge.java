@@ -70,7 +70,7 @@ public class Purge {
             public void run() {
                 m.delete().queue();
             }
-        }, TimeUnit.SECONDS.toMillis(30)));
+        }, TimeUnit.SECONDS.toMillis(10)));
 
         message.getGuild().getTextChannelsByName("logs", false).get(0).sendMessage(embed).complete();
     }
@@ -87,7 +87,7 @@ public class Purge {
                 message.delete().queue();
                 m.delete().queue();
             }
-        }, TimeUnit.SECONDS.toMillis(15)));
+        }, TimeUnit.SECONDS.toMillis(10)));
     }
 
     private void delete(List<Message> messages) {
