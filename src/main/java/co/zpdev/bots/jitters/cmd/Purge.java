@@ -43,13 +43,13 @@ public class Purge {
             }
 
             if (amount > 0) {
-                List<Message> messages = history.retrievePast(100).complete();
+                List<Message> messages = history.retrievePast(amount).complete();
                 if (messages.size() < 1) return;
                 delete(messages);
                 count += messages.size();
             }
         } else {
-            List<Message> messages = history.retrievePast(100).complete();
+            List<Message> messages = history.retrievePast(amount).complete();
             if (messages.size() < 1) return;
             delete(messages);
             count += messages.size();
