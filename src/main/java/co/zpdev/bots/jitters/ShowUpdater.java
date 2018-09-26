@@ -50,7 +50,7 @@ class ShowUpdater {
         for (String show : shows.keySet()) {
             update(show);
 
-            if (!shows.getJSONObject(show).has("nextepisode")) continue;
+            /*if (!shows.getJSONObject(show).has("nextepisode")) continue;
 
             long airTime = shows.getJSONObject(show).getJSONObject("nextepisode").getLong("airtime") - Instant.now().getEpochSecond();
             long fiveMin = airTime - TimeUnit.MINUTES.toSeconds(5);
@@ -61,7 +61,7 @@ class ShowUpdater {
                 public void run() {
                     announce(show);
                 }
-            }, t));
+            }, t));*/
         }
 
         Timer timer = new Timer();
@@ -94,6 +94,12 @@ class ShowUpdater {
         }
     }
 
+    /**
+     * Announces the airing of a new episode and a 5 minute reminder beforehand
+     *
+     * @deprecated until fixed
+     * @param show show to announce
+     */
     private void announce(String show) {
         if (!shows.getJSONObject(show).has("nextepisode")) return;
         if (!shows.getJSONObject(show).getJSONObject("nextepisode").has("airtime")) return;
