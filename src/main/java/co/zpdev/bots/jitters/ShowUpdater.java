@@ -21,7 +21,6 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 /**
  * @author ZP4RKER
@@ -50,18 +49,24 @@ class ShowUpdater {
         for (String show : shows.keySet()) {
             update(show);
 
-            /*if (!shows.getJSONObject(show).has("nextepisode")) continue;
+            if (!shows.getJSONObject(show).has("nextepisode")) continue;
 
             long airTime = shows.getJSONObject(show).getJSONObject("nextepisode").getLong("airtime") - Instant.now().getEpochSecond();
             long fiveMin = airTime - TimeUnit.MINUTES.toSeconds(5);
 
             Timer timer = new Timer();
-            Stream.of(fiveMin, airTime).forEach(t -> timer.schedule(new TimerTask() {
+            timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    announce(show);
+                    announce(show, false);
                 }
-            }, t));*/
+            }, fiveMin);
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    announce(show, true);
+                }
+            }, airTime);
         }
 
         Timer timer = new Timer();
@@ -100,7 +105,7 @@ class ShowUpdater {
      * @deprecated until fixed
      * @param show show to announce
      */
-    private void announce(String show) {
+    private void announce(String show, boolean now) {
         if (!shows.getJSONObject(show).has("nextepisode")) return;
         if (!shows.getJSONObject(show).getJSONObject("nextepisode").has("airtime")) return;
 
@@ -114,13 +119,13 @@ class ShowUpdater {
         .setFooter(data.getString("name") + " - " + nextEp.getString("number"), null)
         .setImage(data.getString("image"));
 
-        if (Instant.now().getEpochSecond() > nextEp.getLong("airtime")) {
+        if (!now) {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts in 5 minutes");
         } else {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
         }
 
-        PostUtil.push("Tried announcing", PostUtil.paste("nextEp = " + nextEp.toString(2)));
+        PostUtil.push("Tried announcing", "show = " + show + ", now = " + now);
         //c.sendMessage(embed.build()).queue();
     }
 
