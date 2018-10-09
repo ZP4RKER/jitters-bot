@@ -55,13 +55,13 @@ class ShowUpdater {
             long fiveMin = airTime - TimeUnit.MINUTES.toSeconds(5);
 
             Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
+            if (fiveMin > 0) timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     announce(show, false);
                 }
             }, fiveMin);
-            timer.schedule(new TimerTask() {
+            if (airTime > 0) timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     announce(show, true);
