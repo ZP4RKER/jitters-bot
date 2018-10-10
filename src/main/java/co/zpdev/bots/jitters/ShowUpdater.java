@@ -49,7 +49,7 @@ class ShowUpdater {
 
             if (!shows.getJSONObject(show).has("nextepisode")) continue;
 
-            long airTime = shows.getJSONObject(show).getJSONObject("nextepisode").getLong("airtime") - Instant.now().getEpochSecond();
+            long airTime = shows.getJSONObject(show).getJSONObject("nextepisode").getLong("airtime");
             long fiveMin = airTime - TimeUnit.MINUTES.toSeconds(5);
 
             PostUtil.push("Time till airtime", "airtime = " + airTime + ", fiveMin = " + fiveMin);
@@ -60,13 +60,13 @@ class ShowUpdater {
                 public void run() {
                     announce(show, false);
                 }
-            }, fiveMin);
+            }, Date.from(Instant.ofEpochSecond(fiveMin)));
             if (airTime > 0) timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     announce(show, true);
                 }
-            }, airTime);
+            }, Date.from(Instant.ofEpochSecond(airTime)));
         }
 
         Timer timer = new Timer();
