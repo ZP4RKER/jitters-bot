@@ -52,8 +52,6 @@ class ShowUpdater {
             long airTime = shows.getJSONObject(show).getJSONObject("nextepisode").getLong("airtime");
             long fiveMin = airTime - TimeUnit.MINUTES.toSeconds(5);
 
-            PostUtil.push("Time till airtime", "airtime = " + airTime + ", fiveMin = " + fiveMin);
-
             Timer timer = new Timer();
             if (fiveMin > 0) timer.schedule(new TimerTask() {
                 @Override
