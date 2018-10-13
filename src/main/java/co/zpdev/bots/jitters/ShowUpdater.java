@@ -2,7 +2,6 @@ package co.zpdev.bots.jitters;
 
 import co.zpdev.core.discord.exception.ExceptionHandler;
 import co.zpdev.core.discord.util.JSONUtil;
-import co.zpdev.core.discord.util.PostUtil;
 import co.zpdev.core.discord.util.TimeUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
@@ -100,7 +99,6 @@ class ShowUpdater {
     /**
      * Announces the airing of a new episode and a 5 minute reminder beforehand
      *
-     * @deprecated until fixed
      * @param show show to announce
      */
     private void announce(String show, boolean now) {
@@ -123,8 +121,7 @@ class ShowUpdater {
             embed.setDescription("\"" + nextEp.getString("name") + "\" starts now");
         }
 
-        PostUtil.push("Tried announcing for " + show, "now = " + now + ", airtime = " + nextEp.getLong("airtime") + ", Instant.now() = " + Instant.now().getEpochSecond());
-        //c.sendMessage(embed.build()).queue();
+        c.sendMessage(embed.build()).queue();
     }
 
     private void update(String show) {
