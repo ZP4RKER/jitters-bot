@@ -23,7 +23,8 @@ public class Kick {
             usage = "!kick {@user} {reason}",
             permission = Permission.KICK_MEMBERS,
             minArgs = 2,
-            mentionedMembers = 1
+            mentionedMembers = 1,
+            autodelete = true
     )
     public void onCommand(Message message, String[] args) {
         String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
