@@ -1,9 +1,8 @@
-package co.zpdev.bots.jitters.cmd;
+package com.zp4rker.bots.jitters.cmd;
 
-import co.zpdev.core.discord.command.Command;
-import co.zpdev.bots.jitters.Jitters;
+import com.zp4rker.core.discord.command.Command;
+import com.zp4rker.bots.jitters.Jitters;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 

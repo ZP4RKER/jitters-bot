@@ -1,4 +1,4 @@
-package co.zpdev.bots.jitters.lstnr;
+package com.zp4rker.bots.jitters.lstnr;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;

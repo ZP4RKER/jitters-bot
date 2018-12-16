@@ -1,7 +1,7 @@
-package co.zpdev.bots.jitters.cmd;
+package com.zp4rker.bots.jitters.cmd;
 
-import co.zpdev.core.discord.command.Command;
-import co.zpdev.core.discord.exception.ExceptionHandler;
+import com.zp4rker.core.discord.command.Command;
+import com.zp4rker.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.io.InputStream;

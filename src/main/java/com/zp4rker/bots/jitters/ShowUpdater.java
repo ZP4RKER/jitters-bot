@@ -1,8 +1,8 @@
-package co.zpdev.bots.jitters;
+package com.zp4rker.bots.jitters;
 
-import co.zpdev.core.discord.exception.ExceptionHandler;
-import co.zpdev.core.discord.util.JSONUtil;
-import co.zpdev.core.discord.util.TimeUtil;
+import com.zp4rker.core.discord.exception.ExceptionHandler;
+import com.zp4rker.core.discord.util.JSONUtil;
+import com.zp4rker.core.discord.util.TimeUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;

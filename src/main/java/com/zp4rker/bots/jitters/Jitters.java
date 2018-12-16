@@ -1,10 +1,10 @@
-package co.zpdev.bots.jitters;
+package com.zp4rker.bots.jitters;
 
-import co.zpdev.bots.jitters.lstnr.JoinLeaveLog;
-import co.zpdev.bots.jitters.lstnr.RoleLog;
-import co.zpdev.bots.jitters.lstnr.SpamLog;
-import co.zpdev.core.discord.command.CommandHandler;
-import co.zpdev.core.discord.exception.ExceptionHandler;
+import com.zp4rker.bots.jitters.lstnr.JoinLeaveLog;
+import com.zp4rker.bots.jitters.lstnr.RoleLog;
+import com.zp4rker.bots.jitters.lstnr.SpamLog;
+import com.zp4rker.core.discord.command.CommandHandler;
+import com.zp4rker.core.discord.exception.ExceptionHandler;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -27,7 +27,7 @@ public class Jitters {
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         ExceptionHandler.init(args[1], "Jitters");
 
-        handler = new CommandHandler("!", "co.zpdev.bots.jitters.cmd");
+        handler = new CommandHandler("!", "com.zp4rker.bots.jitters.cmd");
 
         JDA jda = new JDABuilder(AccountType.BOT)
         .setToken(args[0])

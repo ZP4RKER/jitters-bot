@@ -1,6 +1,6 @@
-package co.zpdev.bots.jitters.cmd;
+package com.zp4rker.bots.jitters.cmd;
 
-import co.zpdev.core.discord.command.Command;
+import com.zp4rker.core.discord.command.Command;
 import net.dv8tion.jda.core.entities.Message;
 
 /**
